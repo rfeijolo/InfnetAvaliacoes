@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7ED66196-7F5C-46FA-BED0-7C66A4712B86}</ProjectGuid>
+    <ProjectGuid>{8A601FF9-4C94-4301-B6A4-3E94627A2038}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Avaliacoes.Domain</RootNamespace>
-    <AssemblyName>Avaliacoes.Domain</AssemblyName>
+    <RootNamespace>Avaliacoes.Data</RootNamespace>
+    <AssemblyName>Avaliacoes.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,18 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aluno.cs" />
-    <Compile Include="Avaliacao.cs" />
-    <Compile Include="Coordenador.cs" />
-    <Compile Include="Curso.cs" />
-    <Compile Include="Disciplina.cs" />
-    <Compile Include="Opcao.cs" />
-    <Compile Include="Professor.cs" />
+    <Compile Include="AvaliacoesDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Questao.cs" />
-    <Compile Include="Resposta.cs" />
-    <Compile Include="TopicoAvaliacao.cs" />
-    <Compile Include="Turma.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Avaliacoes.Data.Contracts\Avaliacoes.Data.Contracts.csproj">
+      <Project>{02382A58-099C-4B2E-9167-753DBEBB0831}</Project>
+      <Name>Avaliacoes.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Avaliacoes.Domain\Avaliacoes.Domain.csproj">
+      <Project>{7ED66196-7F5C-46FA-BED0-7C66A4712B86}</Project>
+      <Name>Avaliacoes.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -176,7 +176,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\AvaliacoesDb.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -232,6 +231,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -241,6 +241,14 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Avaliacoes.Data.Contracts\Avaliacoes.Data.Contracts.csproj">
+      <Project>{02382a58-099c-4b2e-9167-753dbebb0831}</Project>
+      <Name>Avaliacoes.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Avaliacoes.Data\Avaliacoes.Data.csproj">
+      <Project>{8a601ff9-4c94-4301-b6a4-3e94627a2038}</Project>
+      <Name>Avaliacoes.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Avaliacoes.Domain\Avaliacoes.Domain.csproj">
       <Project>{7ed66196-7f5c-46fa-bed0-7c66a4712b86}</Project>
       <Name>Avaliacoes.Domain</Name>

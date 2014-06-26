@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using Avaliacoes.Domain;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq;
+using Avaliacoes.Data.Contracts;
+using Avaliacoes.Domain;
 
-namespace Avaliacoes.Web.Infrastructure
+namespace Avaliacoes.Data
 {
     public class AvaliacoesDb : DbContext, IAvaliacoesDataSource
     {
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

@@ -1,19 +1,17 @@
+using System.Data.Entity.Migrations;
+using Avaliacoes.Data;
+using Avaliacoes.Domain;
+
 namespace Avaliacoes.Web.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-    using Avaliacoes.Domain;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<Avaliacoes.Web.Infrastructure.AvaliacoesDb>
+    internal sealed class Configuration : DbMigrationsConfiguration<AvaliacoesDb>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Avaliacoes.Web.Infrastructure.AvaliacoesDb context)
+        protected override void Seed(AvaliacoesDb context)
         {
             context.Topicos.AddOrUpdate(t => t.Descricao, new TopicoAvaliacao() { Descricao = "Teste" });
 

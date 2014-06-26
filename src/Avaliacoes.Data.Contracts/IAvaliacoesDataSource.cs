@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Avaliacoes.Domain;
 
-namespace Avaliacoes.Domain
+namespace Avaliacoes.Data.Contracts
 {
     public interface IAvaliacoesDataSource
     {

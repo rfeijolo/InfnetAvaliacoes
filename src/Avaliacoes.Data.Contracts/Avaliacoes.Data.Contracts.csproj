@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7ED66196-7F5C-46FA-BED0-7C66A4712B86}</ProjectGuid>
+    <ProjectGuid>{02382A58-099C-4B2E-9167-753DBEBB0831}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Avaliacoes.Domain</RootNamespace>
-    <AssemblyName>Avaliacoes.Domain</AssemblyName>
+    <RootNamespace>Avaliacoes.Data.Contracts</RootNamespace>
+    <AssemblyName>Avaliacoes.Data.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,18 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aluno.cs" />
-    <Compile Include="Avaliacao.cs" />
-    <Compile Include="Coordenador.cs" />
-    <Compile Include="Curso.cs" />
-    <Compile Include="Disciplina.cs" />
-    <Compile Include="Opcao.cs" />
-    <Compile Include="Professor.cs" />
+    <Compile Include="IAvaliacoesDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Questao.cs" />
-    <Compile Include="Resposta.cs" />
-    <Compile Include="TopicoAvaliacao.cs" />
-    <Compile Include="Turma.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Avaliacoes.Domain\Avaliacoes.Domain.csproj">
+      <Project>{7ED66196-7F5C-46FA-BED0-7C66A4712B86}</Project>
+      <Name>Avaliacoes.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
