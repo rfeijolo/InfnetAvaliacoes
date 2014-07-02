@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Avaliacoes.Domain
 {
@@ -17,9 +14,9 @@ namespace Avaliacoes.Domain
         public virtual ICollection<Disciplina> Disciplinas { get; set; }
         public enum Situacao
         {
-            AGENDADA,
-            EM_ANDAMENTO,
-            FINALIZADA
+            Agendada,
+            EmAndamento,
+            Finalizada
         }
 
 

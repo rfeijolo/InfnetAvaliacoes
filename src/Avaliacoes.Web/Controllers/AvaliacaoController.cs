@@ -3,7 +3,7 @@
 namespace Avaliacoes.Web.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class AvaliacaoController : Controller
     {
         public ActionResult Index()
         {

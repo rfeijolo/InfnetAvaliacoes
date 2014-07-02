@@ -79,7 +79,7 @@ namespace Avaliacoes.Web.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Avaliacao");
                 }
                 else
                 {
@@ -286,7 +286,7 @@ namespace Avaliacoes.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Avaliacao");
         }
 
         //
@@ -368,7 +368,7 @@ namespace Avaliacoes.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Avaliacao");
             }
         }
 
