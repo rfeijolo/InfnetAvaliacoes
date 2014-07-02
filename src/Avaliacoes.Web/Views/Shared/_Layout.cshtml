@@ -9,7 +9,7 @@
 
 </head>
 <body>
-    @if (!ViewBag.NoNavBar)
+    @if (ViewBag.NoNavBar != null && !ViewBag.NoNavBar)
     {
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -35,7 +35,7 @@
     <div class="container body-content">
         @RenderBody()
         
-        @if (!ViewBag.NoFooter)
+        @if (ViewBag.NoFooter != null && !ViewBag.NoFooter)
         {
             <hr />
             <footer>
@@ -46,6 +46,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/toastr")
     @RenderSection("scripts", required: false)
 </body>
 </html>
