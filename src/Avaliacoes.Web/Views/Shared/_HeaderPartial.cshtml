@@ -1,0 +1,29 @@
+﻿@if (ViewBag.NoNavBar == null || !ViewBag.NoNavBar)
+{
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a href="@Url.Action("Index","Home")"> <img src="~/Content/logo-infnet.png" style="height:50px" /></a>
+                @*@Html.ActionLink("kAvaliações Infnet", "Index", "Avaliacao", null, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Avaliações", "Home", "Index")</li>
+                    @*@if (User.IsInRole("Admin"))
+                        {*@
+                    <li>@Html.ActionLink("Administrativo", "Home", "Index")</li>
+                    @*  }*@
+
+                    <li>@Html.ActionLink("Conta", "Contact", "Avaliacao")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+}
