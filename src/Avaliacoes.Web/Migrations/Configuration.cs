@@ -4,14 +4,14 @@ using Avaliacoes.Domain;
 
 namespace Avaliacoes.Web.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<AvaliacoesDb>
+    internal sealed class Configuration : DbMigrationsConfiguration<AvaliacoesDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(AvaliacoesDb context)
+        protected override void Seed(AvaliacoesDbContext context)
         {
             context.Topicos.AddOrUpdate(t => t.Descricao, new TopicoAvaliacao() { Descricao = "Teste" });
 

@@ -11,12 +11,12 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
     [Authorize]
     public class CoordenadorController : Controller
     {
-        private readonly AvaliacoesDb _db = new AvaliacoesDb();
+        private readonly AvaliacoesDbContext _dbContext = new AvaliacoesDbContext();
 
         // GET: /Admin/Coordenador/
         public ActionResult Index()
         {
-            return View(_db.Coordenadores.ToList());
+            return View(_dbContext.Coordenadores.ToList());
         }
 
         // GET: /Admin/Coordenador/Details/5
@@ -26,7 +26,7 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Coordenador coordenador = _db.Coordenadores.Find(id);
+            Coordenador coordenador = _dbContext.Coordenadores.Find(id);
             if (coordenador == null)
             {
                 return HttpNotFound();
@@ -49,8 +49,8 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Coordenadores.Add(coordenador);
-                _db.SaveChanges();
+                _dbContext.Coordenadores.Add(coordenador);
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -64,7 +64,7 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Coordenador coordenador = _db.Coordenadores.Find(id);
+            Coordenador coordenador = _dbContext.Coordenadores.Find(id);
             if (coordenador == null)
             {
                 return HttpNotFound();
@@ -81,8 +81,8 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(coordenador).State = EntityState.Modified;
-                _db.SaveChanges();
+                _dbContext.Entry(coordenador).State = EntityState.Modified;
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(coordenador);
@@ -95,7 +95,7 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Coordenador coordenador = _db.Coordenadores.Find(id);
+            Coordenador coordenador = _dbContext.Coordenadores.Find(id);
             if (coordenador == null)
             {
                 return HttpNotFound();
@@ -108,9 +108,9 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Coordenador coordenador = _db.Coordenadores.Find(id);
-            _db.Coordenadores.Remove(coordenador);
-            _db.SaveChanges();
+            Coordenador coordenador = _dbContext.Coordenadores.Find(id);
+            _dbContext.Coordenadores.Remove(coordenador);
+            _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -118,7 +118,7 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         {
             if (disposing)
             {
-                _db.Dispose();
+                _dbContext.Dispose();
             }
             base.Dispose(disposing);
         }

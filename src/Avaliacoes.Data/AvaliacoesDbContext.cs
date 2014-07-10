@@ -6,7 +6,8 @@ using Avaliacoes.Domain;
 
 namespace Avaliacoes.Data
 {
-    public class AvaliacoesDb : DbContext, IAvaliacoesDataSource
+    [DbConfigurationType(typeof(AvaliacoesConfiguration))]
+    public class AvaliacoesDbContext : DbContext, IAvaliacoesDataSource
     {
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
