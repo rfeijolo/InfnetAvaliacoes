@@ -10,8 +10,7 @@
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
             <div class="account-wall">
-                <img class="profile-img" src="http://pmirio.org.br/gpsinrio/wp-content/uploads/2013/11/infnet2.png"
-                     alt="">
+                <img class="profile-img" src="~/Content/logo-infnet2.jpg" alt="round logo"/>
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
