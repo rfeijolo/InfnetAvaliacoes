@@ -10,22 +10,7 @@
 
 <body>
     @Html.Partial("_HeaderPartial")
-    <div class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar">
-            <li><a href="@Url.Action("Index","Coordenador")">Coordenadores</a></li>
-            <li><a href="#">Cursos</a></li>
-            <li><a href="#">Disciplinas</a></li>
-            <li><a href="#">Professores</a></li>
-            <li><a href="#">Alunos</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-            <li><a href="#">Avaliações</a></li>
-            <li><a href="#">Tópicos de avaliação</a></li>
-            <li><a href="#">Questões</a></li>
-            <li><a href="#">Respostas</a></li>
-            <li><a href="#">Opções</a></li>
-        </ul>
-    </div>
+    @Html.Partial("_SidebarPartial")
 
     <div class="container body-content col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         @RenderBody()

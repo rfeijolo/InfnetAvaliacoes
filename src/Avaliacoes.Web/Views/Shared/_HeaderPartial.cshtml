@@ -9,15 +9,15 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a href="@Url.Action("Index","Home")"> <img src="~/Content/logo-infnet.jpg" style="height:50px" alt="square logo"/></a>
+                <a href="@Url.Action("Index","Home")"> <img src="~/Content/logo-infnet.jpg" style="height:50px" alt="square logo" /></a>
                 @*@Html.ActionLink("kAvaliações Infnet", "Index", "Avaliacao", null, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Avaliações", "Home", "Index")</li>
+                    <li>@Html.ActionLink("Avaliações", "Index", "Avaliacao")</li>
                     @*@if (User.IsInRole("Admin"))
                         {*@
-                    <li>@Html.ActionLink("Administrativo", "Home", "Index")</li>
+                    <li>@Html.ActionLink("Administrativo", "Index", new { Area = "Admin", Controller = "Dashboard" })</li>
                     @*  }*@
 
                     <li>@Html.ActionLink("Conta", "Contact", "Avaliacao")</li>
