@@ -1,0 +1,26 @@
+﻿@model Avaliacoes.Domain.TopicoAvaliacao
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhamento</h2>
+
+<div>
+    <h4>Tópico de Avaliação</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar para listagem", "Index")
+</p>
