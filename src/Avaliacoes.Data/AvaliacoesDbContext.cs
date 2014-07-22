@@ -6,7 +6,6 @@ using Avaliacoes.Domain;
 
 namespace Avaliacoes.Data
 {
-    [DbConfigurationType(typeof(AvaliacoesConfiguration))]
     public class AvaliacoesDbContext : DbContext, IAvaliacoesDataSource
     {
         
