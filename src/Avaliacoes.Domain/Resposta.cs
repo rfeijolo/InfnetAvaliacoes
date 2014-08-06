@@ -1,13 +1,13 @@
-﻿namespace Avaliacoes.Domain
+﻿using System.ComponentModel.DataAnnotations;
+namespace Avaliacoes.Domain
 {
     public class Resposta
     {
         public int Id { get; set; }
         public Questao Questao { get; set; }
-        public Opcao OpcaoEscolhida { get; set; }
+        [Range(1, 5)]
+        public int OpcaoEscolhida { get; set; }
         public Aluno Aluno { get; set; }
         public Avaliacao Avaliacao { get; set; }
-
-
     }
 }

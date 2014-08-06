@@ -19,7 +19,6 @@ namespace Avaliacoes.Data
         public DbSet<Coordenador> Coordenadores { get; set; }
         public DbSet<Curso> Cursos { get; set; }
         public DbSet<Disciplina> Disciplinas { get; set; }
-        public DbSet<Opcao> Opcoes { get; set; }
         public DbSet<Professor> Professores { get; set; }
         public DbSet<Questao> Questoes { get; set; }
         public DbSet<Resposta> Respostas { get; set; }
@@ -49,11 +48,6 @@ namespace Avaliacoes.Data
         IQueryable<Disciplina> IAvaliacoesDataSource.Disciplinas
         {
             get { return Disciplinas; }
-        }
-
-        IQueryable<Opcao> IAvaliacoesDataSource.Opcoes
-        {
-            get { return Opcoes; }
         }
 
         IQueryable<Professor> IAvaliacoesDataSource.Professores

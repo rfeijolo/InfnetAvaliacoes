@@ -10,7 +10,6 @@ namespace Avaliacoes.Data.Contracts
         IQueryable<Coordenador> Coordenadores { get; }
         IQueryable<Curso> Cursos { get; }
         IQueryable<Disciplina> Disciplinas { get; }
-        IQueryable<Opcao> Opcoes { get; }
         IQueryable<Professor> Professores { get; }
         IQueryable<Questao> Questoes { get; }
         IQueryable<Resposta> Respostas { get; }
