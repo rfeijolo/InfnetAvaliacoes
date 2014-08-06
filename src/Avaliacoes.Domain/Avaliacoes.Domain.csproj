@@ -45,7 +45,6 @@
     <Compile Include="Coordenador.cs" />
     <Compile Include="Curso.cs" />
     <Compile Include="Disciplina.cs" />
-    <Compile Include="Opcao.cs" />
     <Compile Include="Professor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Questao.cs" />

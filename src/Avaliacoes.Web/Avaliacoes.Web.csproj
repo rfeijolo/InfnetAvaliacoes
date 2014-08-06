@@ -174,6 +174,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CoordenadorController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuestaoController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicoController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AvaliacaoController.cs" />
@@ -218,6 +219,11 @@
     <Content Include="Areas\Admin\Views\Topico\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Topico\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Topico\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Questao\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Questao\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Questao\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Questao\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Questao\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

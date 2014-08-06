@@ -13,7 +13,7 @@ namespace Avaliacoes.Web.Migrations
 
         protected override void Seed(AvaliacoesDbContext context)
         {
-            context.Topicos.AddOrUpdate(t => t.Descricao, new TopicoAvaliacao() { Descricao = "Teste" });
+            //context.Topicos.AddOrUpdate(t => t.Descricao, new TopicoAvaliacao() { Descricao = "Teste" });
 
             //  This method will be called after migrating to the latest version.
 
