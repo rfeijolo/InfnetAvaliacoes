@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Avaliacoes.Domain
@@ -10,7 +11,7 @@ namespace Avaliacoes.Domain
         public virtual ICollection<Avaliacao> Avaliacoes { get; set; }
 
         
-        [ForeignKey("TopicoAvaliacao")]
+        [ForeignKey("TopicoAvaliacao"), DisplayName("Tópico")]
         public int TopicoAvaliacaoId { get; set; }
         public TopicoAvaliacao TopicoAvaliacao { get; set; }
     }
