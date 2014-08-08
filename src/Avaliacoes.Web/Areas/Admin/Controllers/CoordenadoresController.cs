@@ -7,108 +7,110 @@ using Avaliacoes.Data;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
-    public class TopicoController : Controller
+    //TODO: Somente role administrador
+    [Authorize]
+    public class CoordenadoresController : Controller
     {
-        private AvaliacoesDbContext db = new AvaliacoesDbContext();
+        private readonly AvaliacoesDbContext _dbContext = new AvaliacoesDbContext();
 
-        // GET: /Admin/Topico/
+        // GET: /Admin/Coordenador/
         public ActionResult Index()
         {
-            return View(db.Topicos.ToList());
+            return View(_dbContext.Coordenadores.ToList());
         }
 
-        // GET: /Admin/Topico/Details/5
+        // GET: /Admin/Coordenador/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TopicoAvaliacao topicoavaliacao = db.Topicos.Find(id);
-            if (topicoavaliacao == null)
+            Coordenador coordenador = _dbContext.Coordenadores.Find(id);
+            if (coordenador == null)
             {
                 return HttpNotFound();
             }
-            return View(topicoavaliacao);
+            return View(coordenador);
         }
 
-        // GET: /Admin/Topico/Create
+        // GET: /Admin/Coordenador/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Admin/Topico/Create
+        // POST: /Admin/Coordenador/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Descricao")] TopicoAvaliacao topicoavaliacao)
+        public ActionResult Create([Bind(Include="Id,Nome,Email")] Coordenador coordenador)
         {
             if (ModelState.IsValid)
             {
-                db.Topicos.Add(topicoavaliacao);
-                db.SaveChanges();
+                _dbContext.Coordenadores.Add(coordenador);
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(topicoavaliacao);
+            return View(coordenador);
         }
 
-        // GET: /Admin/Topico/Edit/5
+        // GET: /Admin/Coordenador/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TopicoAvaliacao topicoavaliacao = db.Topicos.Find(id);
-            if (topicoavaliacao == null)
+            Coordenador coordenador = _dbContext.Coordenadores.Find(id);
+            if (coordenador == null)
             {
                 return HttpNotFound();
             }
-            return View(topicoavaliacao);
+            return View(coordenador);
         }
 
-        // POST: /Admin/Topico/Edit/5
+        // POST: /Admin/Coordenador/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Descricao")] TopicoAvaliacao topicoavaliacao)
+        public ActionResult Edit([Bind(Include="Id,Nome,Email")] Coordenador coordenador)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(topicoavaliacao).State = EntityState.Modified;
-                db.SaveChanges();
+                _dbContext.Entry(coordenador).State = EntityState.Modified;
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(topicoavaliacao);
+            return View(coordenador);
         }
 
-        // GET: /Admin/Topico/Delete/5
+        // GET: /Admin/Coordenador/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TopicoAvaliacao topicoavaliacao = db.Topicos.Find(id);
-            if (topicoavaliacao == null)
+            Coordenador coordenador = _dbContext.Coordenadores.Find(id);
+            if (coordenador == null)
             {
                 return HttpNotFound();
             }
-            return View(topicoavaliacao);
+            return View(coordenador);
         }
 
-        // POST: /Admin/Topico/Delete/5
+        // POST: /Admin/Coordenador/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TopicoAvaliacao topicoavaliacao = db.Topicos.Find(id);
-            db.Topicos.Remove(topicoavaliacao);
-            db.SaveChanges();
+            Coordenador coordenador = _dbContext.Coordenadores.Find(id);
+            _dbContext.Coordenadores.Remove(coordenador);
+            _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -116,7 +118,7 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _dbContext.Dispose();
             }
             base.Dispose(disposing);
         }

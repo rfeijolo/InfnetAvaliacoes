@@ -172,10 +172,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\CoordenadorController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CoordenadoresController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
-    <Compile Include="Areas\Admin\Controllers\QuestaoController.cs" />
-    <Compile Include="Areas\Admin\Controllers\TopicoController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuestoesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TopicosController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AvaliacaoController.cs" />
     <Compile Include="Global.asax.cs">

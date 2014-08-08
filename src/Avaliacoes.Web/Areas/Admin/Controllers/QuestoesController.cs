@@ -11,7 +11,7 @@ using Avaliacoes.Domain;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
-    public class QuestaoController : Controller
+    public class QuestoesController : Controller
     {
         private AvaliacoesDbContext db = new AvaliacoesDbContext();
 
