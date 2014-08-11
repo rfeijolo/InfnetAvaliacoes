@@ -10,7 +10,7 @@ namespace Avaliacoes.Domain
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
         public virtual ICollection<Questao> Questoes { get; set; }
-        public Coordenador Coordenador { get; set; }
+        public virtual Coordenador Coordenador { get; set; }
         public virtual ICollection<Disciplina> Disciplinas { get; set; }
         public enum Situacao
         {

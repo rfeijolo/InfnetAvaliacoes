@@ -7,7 +7,7 @@ namespace Avaliacoes.Domain
         public Questao Questao { get; set; }
         [Range(1, 5)]
         public int OpcaoEscolhida { get; set; }
-        public Aluno Aluno { get; set; }
-        public Avaliacao Avaliacao { get; set; }
+        public virtual Aluno Aluno { get; set; }
+        public virtual Avaliacao Avaliacao { get; set; }
     }
 }

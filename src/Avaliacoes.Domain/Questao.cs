@@ -13,6 +13,6 @@ namespace Avaliacoes.Domain
         
         [ForeignKey("TopicoAvaliacao"), DisplayName("Tópico")]
         public int TopicoAvaliacaoId { get; set; }
-        public TopicoAvaliacao TopicoAvaliacao { get; set; }
+        public virtual TopicoAvaliacao TopicoAvaliacao { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using Avaliacoes.Domain;
+using System.Threading.Tasks;
 
 namespace Avaliacoes.Data
 {
@@ -12,7 +13,21 @@ namespace Avaliacoes.Data
             SeedCoordenadores(context);
             SeedTopicosAvaliacao(context);
             SeedQuestoes(context);
+            SeedCursos(context);
+            SeedProfessores(context);
+            SeedAlunos(context);
             base.Seed(context);
+        }
+
+        private void SeedAlunos(AvaliacoesDbContext context)
+        {
+            var alunos = new List<Aluno>{
+                new Aluno{ Nome = "Rodrigo Aiala", Email="rodrigo.aiala@al.infnet.edu.br" },
+                new Aluno{ Nome = "Felipe Barbirato", Email="felipe.barbirato@al.infnet.edu.br" },
+                new Aluno{ Nome = "Gabriel Berguer", Email="gabriel.berguer@al.infnet.edu.br" },
+                new Aluno{ Nome = "Diego Bastos", Email="diego.bastos@al.infnet.edu.br" },
+            };
+            alunos.ForEach(aluno => context.Alunos.Add(aluno));
         }
 
         private static void SeedTopicosAvaliacao(AvaliacoesDbContext context)
@@ -23,7 +38,7 @@ namespace Avaliacoes.Data
                 new TopicoAvaliacao{Descricao = "Quanto aos recursos auxiliares e tempo"},
                 new TopicoAvaliacao{Descricao = "Quanto a avaliacação"},
             };
-            
+
             topicos.ForEach(topico => context.Topicos.Add(topico));
             context.SaveChanges();
         }
@@ -65,6 +80,32 @@ namespace Avaliacoes.Data
                 new Coordenador {Email = "aquino@infnet.edu.br", Nome = "Tomás de Aquino Tinoco Botelho"}
             };
             coordenadores.ForEach(coord => context.Coordenadores.Add(coord));
+            context.SaveChanges();
+        }
+
+        private static void SeedCursos(AvaliacoesDbContext context)
+        {
+            var cursos = new List<Curso>{
+                new Curso{ Nome = "Engenharia de Software .NET" },
+                new Curso{ Nome = "Engenharia de Software JAVA"},
+                new Curso { Nome = "Engenharia de Redes"},
+                new Curso {Nome = "Design Digital"}
+            };
+
+            cursos.ForEach(curso => context.Cursos.Add(curso));
+            context.SaveChanges();
+        }
+
+        private static void SeedProfessores(AvaliacoesDbContext context)
+        {
+            var professores = new List<Professor>{
+                new Professor { Nome = "Pier-Giovanni taranti"},
+                new Professor { Nome = "Carlos Pedro Muniz"},
+                new Professor { Nome = "Rogério Magela"},
+                new Professor { Nome = "Rafael Mello"},
+            };
+
+            professores.ForEach(professor => context.Professores.Add(professor));
             context.SaveChanges();
         }
     }
