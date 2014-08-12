@@ -1,0 +1,26 @@
+﻿@model Avaliacoes.Domain.Turma
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes</h2>
+@*TODO: Mostrar alunos*@
+<div>
+    <h4>Turma</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar para listagem", "Index")
+</p>
