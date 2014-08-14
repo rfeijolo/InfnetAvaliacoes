@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Avaliacoes.Web.Models;
+@using Microsoft.AspNet.Identity;
+@{
     ViewBag.Title = "Manage Account";
 }
 
@@ -18,10 +20,10 @@
 
         <section id="externalLogins">
             @Html.Action("RemoveAccountList")
-            @Html.Partial("_ExternalLoginsListPartial", new { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
 </div>
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
 }

@@ -9,18 +9,15 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a href="@Url.Action("Index","Home")"> <img src="~/Content/logo-infnet.jpg" style="height:50px" alt="square logo" /></a>
-                @*@Html.ActionLink("kAvaliações Infnet", "Index", "Avaliacao", null, new { @class = "navbar-brand" })*@
+                <a href="@Url.Action("Index", "Avaliacao", new { Area = "" })"> <img src="~/Content/logo-infnet.jpg" style="height:50px" alt="square logo" /></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Avaliações", "Index", "Avaliacao")</li>
+                    <li>@Html.ActionLink("Avaliações", "Index", new { Controller = "Avaliacao", Area = "" })</li>
                     @*@if (User.IsInRole("Admin"))
                         {*@
                     <li>@Html.ActionLink("Administrativo", "Index", new { Area = "Admin", Controller = "Dashboard" })</li>
                     @*  }*@
-
-                    <li>@Html.ActionLink("Conta", "Contact", "Avaliacao")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
