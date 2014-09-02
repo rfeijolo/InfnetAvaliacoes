@@ -53,6 +53,12 @@ namespace Avaliacoes.Web.Models
 
     public class RegisterViewModel
     {
+        public string Id { get; set; }
+
+        [Required]
+        [Display(Name = "Nome")]
+        public string Nome{ get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -61,11 +67,11 @@ namespace Avaliacoes.Web.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirmação de senha")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }

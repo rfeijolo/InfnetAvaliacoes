@@ -1,39 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Avaliacoes.Data;
-using Avaliacoes.Domain;
+using Avaliacoes.Web.Models;
+using Avaliacoes.Web.Resources;
+using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
     public class AlunosController : Controller
     {
+        private ApplicationUserManager _userManager;
+        //TODO: Refatorar, merge com AccountController
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
         private AvaliacoesDbContext db = new AvaliacoesDbContext();
 
         // GET: Admin/Alunos
         public ActionResult Index()
         {
-            return View(db.Alunos.ToList());
+
+            return View(UserManager.Users.ToList());
         }
 
         // GET: Admin/Alunos/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Aluno aluno = db.Alunos.Find(id);
-            if (aluno == null)
+            ApplicationUser applicationUser = db.Users.Find(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(aluno);
+            return View(applicationUser);
         }
 
         // GET: Admin/Alunos/Create
@@ -47,31 +68,40 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,Email")] Aluno aluno)
+        public async Task<ActionResult> Create([Bind(Include = "Nome,Email,Password,PasswordConfirmation")] RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+
+            var user = new ApplicationUser { Name = model.Nome, Email = model.Email };
+            var result = await UserManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
             {
-                db.Alunos.Add(aluno);
-                db.SaveChanges();
+                UserManager.AddToRole(user.Id, RolesResource.Alunos);
                 return RedirectToAction("Index");
             }
+            AddErrors(result);
 
-            return View(aluno);
+            return View(model);
         }
 
         // GET: Admin/Alunos/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Aluno aluno = db.Alunos.Find(id);
-            if (aluno == null)
+            var applicationUser = await UserManager.FindByIdAsync(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(aluno);
+            return View(new RegisterViewModel
+            {
+                Id = applicationUser.Id,
+                Nome = applicationUser.Name,
+                Email = applicationUser.Email
+            });
         }
 
         // POST: Admin/Alunos/Edit/5
@@ -79,39 +109,47 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Email")] Aluno aluno)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Nome,Email,Password,PasswordConfirmation")] RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+            var user = await UserManager.FindByIdAsync(model.Id);
+            if (user == null)
             {
-                db.Entry(aluno).State = EntityState.Modified;
-                db.SaveChanges();
+                return HttpNotFound();
+            }
+            user.Name = model.Nome;
+            user.Email = model.Email;
+            var result = await UserManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
                 return RedirectToAction("Index");
             }
-            return View(aluno);
+            AddErrors(result);
+            return View(model);
         }
 
         // GET: Admin/Alunos/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Aluno aluno = db.Alunos.Find(id);
-            if (aluno == null)
+            ApplicationUser applicationUser = db.Users.Find(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(aluno);
+            return View(applicationUser);
         }
 
         // POST: Admin/Alunos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Aluno aluno = db.Alunos.Find(id);
-            db.Alunos.Remove(aluno);
+            ApplicationUser applicationUser = db.Users.Find(id);
+            db.Users.Remove(applicationUser);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

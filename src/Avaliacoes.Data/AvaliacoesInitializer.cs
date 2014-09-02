@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace Avaliacoes.Data
 {
-    public class AvaliacoesInitializer : DropCreateDatabaseIfModelChanges<AvaliacoesDbContext>
+    public class AvaliacoesInitializer : DropCreateDatabaseAlways<AvaliacoesDbContext>
     {
-
         protected override void Seed(AvaliacoesDbContext context)
         {
             SeedCoordenadores(context);
