@@ -26,6 +26,7 @@ namespace Avaliacoes.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.theme.css",
                       "~/Content/site.css",
                       "~/Content/toastr.min.css",
                       "~/Content/dashboard.css"));
