@@ -27,7 +27,16 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         // GET: /Admin/Avaliacoes/Details/5
         public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Avaliacao avaliacao = db.Avaliacoes.Find(id);
+            if (avaliacao == null)
+            {
+                return HttpNotFound();
+            }
+            return View(avaliacao);
         }
 
         //
@@ -67,7 +76,7 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
+            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome", avaliacao.CoordenadorId);
             return View(avaliacao);
         }
 
@@ -83,7 +92,7 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
+            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome", avaliacao.CoordenadorId);
             return View(avaliacao);
         }
 
