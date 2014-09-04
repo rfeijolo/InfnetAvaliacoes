@@ -1,4 +1,4 @@
-﻿@model Avaliacoes.Domain.Avaliacao
+﻿@model Avaliacoes.Web.Models.ViewModels.AvaliacaoViewModel
 
 @{
     ViewBag.Title = "Novo";
@@ -45,6 +45,14 @@
             <div class="col-md-10">
                 @Html.DropDownList("CoordenadorId", String.Empty)
                 @Html.ValidationMessageFor(model => model.CoordenadorId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DisciplinasID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(model => model.DisciplinasID, ViewBag.ListaDisciplinas as System.Web.Mvc.MultiSelectList, new { Multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.DisciplinasID)
             </div>
         </div>
 

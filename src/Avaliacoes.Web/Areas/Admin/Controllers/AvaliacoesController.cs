@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Avaliacoes.Data;
 using Avaliacoes.Domain;
 using System.Net;
+using Avaliacoes.Web.Models.ViewModels;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
@@ -43,6 +44,9 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         // GET: /Admin/Avaliacoes/Create
         public ActionResult Create()
         {
+            List<Disciplina> Disciplinas = db.Disciplinas.ToList();
+            ViewBag.ListaDisciplinas = new MultiSelectList(Disciplinas, "Id", "Nome", null);
+
             ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
             return View();
         }
@@ -50,17 +54,41 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         //
         // POST: /Admin/Avaliacoes/Create
         [HttpPost]
-        public ActionResult Create(Avaliacao avaliacao)
+        public ActionResult Create(AvaliacaoViewModel avaliacaoViewModel)
         {
             if (ModelState.IsValid)
             {
+                var avaliacao = new Avaliacao();
+                avaliacao.Objetivo = avaliacaoViewModel.Objetivo;
+                avaliacao.DataInicio = avaliacaoViewModel.DataInicio;
+                avaliacao.DataFim = avaliacaoViewModel.DataFim;
+                avaliacao.CoordenadorId = avaliacaoViewModel.CoordenadorId;
+
+                foreach (var disciplinaID in avaliacaoViewModel.DisciplinasID)
+                {
+                    var disciplina = db.Disciplinas.Find(disciplinaID);
+                    if (disciplina != null)
+                    {
+                        if (avaliacao.Disciplinas == null)
+                        {
+                            avaliacao.Disciplinas = new List<Disciplina> {disciplina};
+                        }
+                        else 
+                        { 
+                            avaliacao.Disciplinas.Add(disciplina);
+                        }
+                    }
+                }
                 db.Avaliacoes.Add(avaliacao);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            List<Disciplina> Disciplinas = db.Disciplinas.ToList();
+            ViewBag.ListaDisciplinas = new MultiSelectList(Disciplinas, "Id", "Nome", null);
+
             ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
-            return View(avaliacao);
+            return View(avaliacaoViewModel);
         }
 
         //
