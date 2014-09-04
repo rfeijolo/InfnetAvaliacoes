@@ -57,6 +57,7 @@
     <Compile Include="Turma.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Diagram\" />
     <Folder Include="Entities\" />
     <Folder Include="UseCases\" />
   </ItemGroup>

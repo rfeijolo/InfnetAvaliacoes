@@ -15,6 +15,7 @@ namespace Avaliacoes.Data
             SeedCursos(context);
             SeedProfessores(context);
             SeedAlunos(context);
+            SeedDisciplinas(context);
             SeedAvaliacoes(context);
             base.Seed(context);
         }
@@ -127,32 +128,40 @@ namespace Avaliacoes.Data
 
         private static void SeedAvaliacoes(AvaliacoesDbContext context)
         {
-            var avaliacoes = new List<Avaliacao>{
-                new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software .Net", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1), CoordenadorId = 1,
-                    Disciplinas = new List<Disciplina>{ 
-                        new Disciplina { Id = 1}
-                    },
-                    Questoes = new List<Questao>{
-                        new Questao {Id = 1},
-                        new Questao {Id = 2},
-                        new Questao {Id = 3}
-                    }
+            try
+            {
+                var avaliacoes = new List<Avaliacao>{
+                new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software .Net", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1), CoordenadorId = 1
+                    //,Disciplinas = new List<Disciplina>{ 
+                    //    new Disciplina { Id = 1}
+                    //},
+                    //Questoes = new List<Questao>{
+                    //    new Questao {Id = 1, TopicoAvaliacaoId = 1},
+                    //    new Questao {Id = 2, TopicoAvaliacaoId = 1},
+                    //    new Questao {Id = 3, TopicoAvaliacaoId = 1}
+                    //}
                 },
-                new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software Java", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1), CoordenadorId = 1,
-                    Disciplinas = new List<Disciplina>{ 
-                        new Disciplina { Id = 2},
-                        new Disciplina { Id = 3}
-                    },
-                    Questoes = new List<Questao>{
-                        new Questao {Id = 4},
-                        new Questao {Id = 5},
-                        new Questao {Id = 6}
-                    }
+                new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software Java", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1), CoordenadorId = 1
+                    //,Disciplinas = new List<Disciplina>{ 
+                    //    new Disciplina { Id = 2},
+                    //    new Disciplina { Id = 3}
+                    //},
+                    //Questoes = new List<Questao>{
+                    //    new Questao {Id = 4, TopicoAvaliacaoId = 1},
+                    //    new Questao {Id = 5, TopicoAvaliacaoId = 1},
+                    //    new Questao {Id = 6, TopicoAvaliacaoId = 1}
+                    //}
                 },
             };
 
-            avaliacoes.ForEach(avaliacao => context.Avaliacoes.Add(avaliacao));
-            context.SaveChanges();
+                avaliacoes.ForEach(avaliacao => context.Avaliacoes.Add(avaliacao));
+                context.SaveChanges();
+            }
+            catch (System.Exception ex)
+            {
+                throw;
+            }
+
         }
     }
 }
