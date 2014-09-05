@@ -86,7 +86,6 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
 
             List<Disciplina> Disciplinas = db.Disciplinas.ToList();
             ViewBag.ListaDisciplinas = new MultiSelectList(Disciplinas, "Id", "Nome", null);
-
             ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
             return View(avaliacaoViewModel);
         }
