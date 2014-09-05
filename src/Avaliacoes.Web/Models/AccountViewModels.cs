@@ -44,10 +44,10 @@ namespace Avaliacoes.Web.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Continuar conectado")]
         public bool RememberMe { get; set; }
     }
 

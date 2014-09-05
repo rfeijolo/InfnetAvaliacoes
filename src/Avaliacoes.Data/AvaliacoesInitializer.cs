@@ -128,9 +128,7 @@ namespace Avaliacoes.Data
 
         private static void SeedAvaliacoes(AvaliacoesDbContext context)
         {
-            try
-            {
-                var avaliacoes = new List<Avaliacao>{
+            var avaliacoes = new List<Avaliacao>{
                 new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software .Net", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1), CoordenadorId = 1
                     //,Disciplinas = new List<Disciplina>{ 
                     //    new Disciplina { Id = 1}
@@ -154,14 +152,8 @@ namespace Avaliacoes.Data
                 },
             };
 
-                avaliacoes.ForEach(avaliacao => context.Avaliacoes.Add(avaliacao));
-                context.SaveChanges();
-            }
-            catch (System.Exception ex)
-            {
-                throw;
-            }
-
+            avaliacoes.ForEach(avaliacao => context.Avaliacoes.Add(avaliacao));
+            context.SaveChanges();
         }
     }
 }
