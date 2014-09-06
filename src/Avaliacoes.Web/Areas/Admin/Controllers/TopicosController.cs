@@ -7,6 +7,7 @@ using Avaliacoes.Data;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class TopicosController : Controller
     {
         private AvaliacoesDbContext db = new AvaliacoesDbContext();

@@ -12,6 +12,7 @@ using Avaliacoes.Domain;
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
     //TODO: Mover para curso
+    [Authorize(Roles = "admin")]
     public class DisciplinasController : Controller
     {
         private AvaliacoesDbContext db = new AvaliacoesDbContext();

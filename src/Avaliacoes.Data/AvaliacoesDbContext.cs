@@ -3,15 +3,26 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using Avaliacoes.Data.Contracts;
 using Avaliacoes.Domain;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Avaliacoes.Data
 {
-    public class AvaliacoesDbContext : DbContext, IAvaliacoesDataSource
+    public class AvaliacoesDbContext : IdentityDbContext<ApplicationUser>, IAvaliacoesDataSource
     {
-        
+        public AvaliacoesDbContext()
+            : base("AvaliacoesDbContext", throwIfV1Schema: false)
+        {
+        }
+
+        public static AvaliacoesDbContext Create()
+        {
+            return new AvaliacoesDbContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Aluno> Alunos { get; set; }
@@ -76,4 +87,6 @@ namespace Avaliacoes.Data
         }
 
     }
+
+
 }

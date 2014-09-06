@@ -7,8 +7,7 @@ using Avaliacoes.Data;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
-    //TODO: Somente role administrador
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class CoordenadoresController : Controller
     {
         private readonly AvaliacoesDbContext _dbContext = new AvaliacoesDbContext();
