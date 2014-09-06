@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class DashboardController : Controller
     {
         //

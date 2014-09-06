@@ -75,7 +75,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationUser.cs" />
     <Compile Include="ApplicationUserManager.cs" />
     <Compile Include="AvaliacoesConfiguration.cs" />
     <Compile Include="AvaliacoesDbContext.cs" />

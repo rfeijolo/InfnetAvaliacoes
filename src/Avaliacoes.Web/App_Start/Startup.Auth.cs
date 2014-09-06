@@ -1,4 +1,5 @@
 ﻿using Avaliacoes.Data;
+using Avaliacoes.Domain;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;

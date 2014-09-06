@@ -1,10 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Avaliacoes.Data
+namespace Avaliacoes.Domain
 {
     public class ApplicationUser : IdentityUser
     {

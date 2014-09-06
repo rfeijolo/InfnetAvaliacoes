@@ -61,7 +61,7 @@ namespace Avaliacoes.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Admin.
+        ///   Looks up a localized string similar to admin.
         /// </summary>
         internal static string Admin {
             get {
@@ -70,7 +70,7 @@ namespace Avaliacoes.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alunos.
+        ///   Looks up a localized string similar to aluno.
         /// </summary>
         internal static string Alunos {
             get {

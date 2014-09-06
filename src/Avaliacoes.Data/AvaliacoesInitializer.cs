@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Security.Policy;
 using Avaliacoes.Domain;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -28,54 +29,7 @@ namespace Avaliacoes.Data
         private void SeedApplicationUsers(AvaliacoesDbContext context)
         {
             var adminRole = new IdentityRole { Name = "admin", Id = Guid.NewGuid().ToString() };
-            var alunoRole = new IdentityRole { Name = "aluno", Id = Guid.NewGuid().ToString() };
-
             context.Roles.Add(adminRole);
-            context.Roles.Add(alunoRole);
-            context.SaveChanges();
-
-            var password = new PasswordHasher().HashPassword("mudar123!");
-
-            var users = new List<ApplicationUser>
-                {
-                    new ApplicationUser
-                    {
-                        Name = "Rodrigo Aiala",
-                        UserName = "rodrigo.rodrigues@al.infnet.edu.br",
-                        Email = "rodrigo.rodrigues@al.infnet.edu.br",
-                        SecurityStamp = Guid.NewGuid().ToString(),
-                        PasswordHash = password
-                    },
-                    new ApplicationUser
-                    {
-                        Name = "Felipe Barbirato",
-                        UserName = "felipe.barbirato@al.infnet.edu.br",
-                        Email = "felipe.barbirato@al.infnet.edu.br",
-                        SecurityStamp = Guid.NewGuid().ToString(),
-                        PasswordHash = password
-                    },
-                    new ApplicationUser
-                    {
-                        Name = "Gabriel Berguer",
-                        UserName = "gabriel.berguer@al.infnet.edu.br",
-                        Email = "gabriel.berguer@al.infnet.edu.br",
-                        SecurityStamp = Guid.NewGuid().ToString(),
-                        PasswordHash = password
-                    },
-                    new ApplicationUser
-                    {
-                        Name = "Diego Bastos",
-                        UserName = "diego.bastos@al.infnet.edu.br",
-                        Email = "diego.bastos@al.infnet.edu.br",
-                        SecurityStamp = Guid.NewGuid().ToString(),
-                        PasswordHash = password
-                    },
-                };
-            users.ForEach(user =>
-            {
-                user.Roles.Add(new IdentityUserRole { RoleId = alunoRole.Id, UserId = user.Id });
-                context.Users.Add(user);
-            });
 
             var administrador = new ApplicationUser
             {
@@ -84,7 +38,7 @@ namespace Avaliacoes.Data
                 Email = "admin@infnet.edu.br",
                 EmailConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                PasswordHash = password,
+                PasswordHash = HashPassword,
             };
 
             context.Users.Add(administrador);
@@ -92,15 +46,58 @@ namespace Avaliacoes.Data
             context.SaveChanges();
         }
 
+        private static string HashPassword
+        {
+            get { return new PasswordHasher().HashPassword("mudar123!"); }
+        }
+
         private void SeedAlunos(AvaliacoesDbContext context)
         {
-            var alunos = new List<Aluno>{
-                new Aluno{ Nome = "Rodrigo Aiala", Email="rodrigo.rodrigues@al.infnet.edu.br" },
-                new Aluno{ Nome = "", Email="felipe.barbirato@al.infnet.edu.br" },
-                new Aluno{ Nome = "Gabriel Berguer", Email="gabriel.berguer@al.infnet.edu.br" },
-                new Aluno{ Nome = "Diego Bastos", Email="diego.bastos@al.infnet.edu.br" },
-            };
+
+            var alunoRole = new IdentityRole { Name = "aluno", Id = Guid.NewGuid().ToString() };
+            context.Roles.Add(alunoRole);
+            var alunos = new List<Aluno>
+                {
+                    new Aluno
+                    {
+                        Name = "Rodrigo Aiala",
+                        UserName = "rodrigo.rodrigues@al.infnet.edu.br",
+                        Email = "rodrigo.rodrigues@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = HashPassword
+                    },
+                    new Aluno
+                    {
+                        Name = "Felipe Barbirato",
+                        UserName = "felipe.barbirato@al.infnet.edu.br",
+                        Email = "felipe.barbirato@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = HashPassword
+                    },
+                    new Aluno
+                    {
+                        Name = "Gabriel Berguer",
+                        UserName = "gabriel.berguer@al.infnet.edu.br",
+                        Email = "gabriel.berguer@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = HashPassword
+                    },
+                    new Aluno
+                    {
+                        Name = "Diego Bastos",
+                        UserName = "diego.bastos@al.infnet.edu.br",
+                        Email = "diego.bastos@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = HashPassword
+                    },
+                };
+            alunos.ForEach(user =>
+            {
+                user.Roles.Add(new IdentityUserRole { RoleId = alunoRole.Id, UserId = user.Id });
+                context.Users.Add(user);
+            });
             alunos.ForEach(aluno => context.Alunos.Add(aluno));
+            context.SaveChanges();
         }
 
         private static void SeedTopicosAvaliacao(AvaliacoesDbContext context)

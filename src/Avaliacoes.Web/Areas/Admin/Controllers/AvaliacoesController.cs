@@ -12,6 +12,7 @@ using Avaliacoes.Web.Models.ViewModels;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AvaliacoesController : Controller
     {
         private AvaliacoesDbContext db = new AvaliacoesDbContext();

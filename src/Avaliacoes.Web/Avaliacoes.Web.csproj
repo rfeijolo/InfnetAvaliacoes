@@ -372,6 +372,7 @@
     <EmbeddedResource Include="Resources\RolesResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RolesResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -11,6 +11,7 @@ using Avaliacoes.Domain;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class QuestoesController : Controller
     {
         private AvaliacoesDbContext db = new AvaliacoesDbContext();
