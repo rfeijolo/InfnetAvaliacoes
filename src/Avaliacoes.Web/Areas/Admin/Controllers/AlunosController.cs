@@ -3,6 +3,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Avaliacoes.Data;
+using Avaliacoes.Domain;
 using Avaliacoes.Web.Models;
 using Avaliacoes.Web.Resources;
 using Microsoft.AspNet.Identity;
@@ -11,10 +12,12 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AlunosController : Controller
     {
         private ApplicationUserManager _userManager;
         //TODO: Refatorar, merge com AccountController
+        //TODO: Resetar senhas de alunos
         public ApplicationUserManager UserManager
         {
             get
@@ -39,7 +42,7 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         public ActionResult Index()
         {
 
-            return View(UserManager.Users.ToList());
+            return View(db.Alunos.ToList());
         }
 
         // GET: Admin/Alunos/Details/5
@@ -49,7 +52,7 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
+            var applicationUser = db.Alunos.Find(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -72,7 +75,7 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var user = new ApplicationUser { Name = model.Nome, Email = model.Email };
+            var user = new Aluno { Name = model.Nome, Email = model.Email, UserName = model.Email };
             var result = await UserManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
@@ -91,16 +94,16 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var applicationUser = await UserManager.FindByIdAsync(id);
-            if (applicationUser == null)
+            var aluno = await UserManager.FindByIdAsync(id);
+            if (aluno == null)
             {
                 return HttpNotFound();
             }
             return View(new RegisterViewModel
             {
-                Id = applicationUser.Id,
-                Nome = applicationUser.Name,
-                Email = applicationUser.Email
+                Id = aluno.Id,
+                Nome = aluno.Name,
+                Email = aluno.Email
             });
         }
 
@@ -112,14 +115,14 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         public async Task<ActionResult> Edit([Bind(Include = "Id,Nome,Email,Password,PasswordConfirmation")] RegisterViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
-            var user = await UserManager.FindByIdAsync(model.Id);
-            if (user == null)
+            var aluno = await UserManager.FindByIdAsync(model.Id);
+            if (aluno == null)
             {
                 return HttpNotFound();
             }
-            user.Name = model.Nome;
-            user.Email = model.Email;
-            var result = await UserManager.UpdateAsync(user);
+            aluno.Name = model.Nome;
+            aluno.Email = model.Email;
+            var result = await UserManager.UpdateAsync(aluno);
             if (result.Succeeded)
             {
                 return RedirectToAction("Index");
@@ -135,12 +138,12 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
-            if (applicationUser == null)
+            var aluno = db.Alunos.Find(id);
+            if (aluno == null)
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            return View(aluno);
         }
 
         // POST: Admin/Alunos/Delete/5
@@ -148,8 +151,8 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            ApplicationUser applicationUser = db.Users.Find(id);
-            db.Users.Remove(applicationUser);
+            var aluno = db.Alunos.Find(id);
+            db.Users.Remove(aluno);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

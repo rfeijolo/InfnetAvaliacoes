@@ -327,14 +327,12 @@
     <Content Include="Views\Avaliacao\About.cshtml" />
     <Content Include="Views\Avaliacao\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\toastr.min.js.map" />
     <Content Include="Views\Avaliacao\Contact.cshtml" />
@@ -374,6 +372,7 @@
     <EmbeddedResource Include="Resources\RolesResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RolesResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

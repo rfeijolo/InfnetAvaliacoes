@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Security.Policy;
 using Avaliacoes.Domain;
-using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Avaliacoes.Data
 {
-    public class AvaliacoesInitializer : DropCreateDatabaseAlways<AvaliacoesDbContext>
+    public class AvaliacoesInitializer : DropCreateDatabaseIfModelChanges<AvaliacoesDbContext>
     {
         protected override void Seed(AvaliacoesDbContext context)
         {
@@ -17,18 +20,84 @@ namespace Avaliacoes.Data
             SeedAlunos(context);
             SeedDisciplinas(context);
             SeedAvaliacoes(context);
+
+            SeedApplicationUsers(context);
+
             base.Seed(context);
+        }
+
+        private void SeedApplicationUsers(AvaliacoesDbContext context)
+        {
+            var adminRole = new IdentityRole { Name = "admin", Id = Guid.NewGuid().ToString() };
+            context.Roles.Add(adminRole);
+
+            var administrador = new ApplicationUser
+            {
+                Name = "Administrador",
+                UserName = "admin@infnet.edu.br",
+                Email = "admin@infnet.edu.br",
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                PasswordHash = HashPassword,
+            };
+
+            context.Users.Add(administrador);
+            administrador.Roles.Add(new IdentityUserRole { RoleId = adminRole.Id, UserId = administrador.Id });
+            context.SaveChanges();
+        }
+
+        private static string HashPassword
+        {
+            get { return new PasswordHasher().HashPassword("mudar123!"); }
         }
 
         private void SeedAlunos(AvaliacoesDbContext context)
         {
-            var alunos = new List<Aluno>{
-                new Aluno{ Nome = "Rodrigo Aiala", Email="rodrigo.aiala@al.infnet.edu.br" },
-                new Aluno{ Nome = "Felipe Barbirato", Email="felipe.barbirato@al.infnet.edu.br" },
-                new Aluno{ Nome = "Gabriel Berguer", Email="gabriel.berguer@al.infnet.edu.br" },
-                new Aluno{ Nome = "Diego Bastos", Email="diego.bastos@al.infnet.edu.br" },
-            };
+
+            var alunoRole = new IdentityRole { Name = "aluno", Id = Guid.NewGuid().ToString() };
+            context.Roles.Add(alunoRole);
+            var alunos = new List<Aluno>
+                {
+                    new Aluno
+                    {
+                        Name = "Rodrigo Aiala",
+                        UserName = "rodrigo.rodrigues@al.infnet.edu.br",
+                        Email = "rodrigo.rodrigues@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = HashPassword
+                    },
+                    new Aluno
+                    {
+                        Name = "Felipe Barbirato",
+                        UserName = "felipe.barbirato@al.infnet.edu.br",
+                        Email = "felipe.barbirato@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = HashPassword
+                    },
+                    new Aluno
+                    {
+                        Name = "Gabriel Berguer",
+                        UserName = "gabriel.berguer@al.infnet.edu.br",
+                        Email = "gabriel.berguer@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = HashPassword
+                    },
+                    new Aluno
+                    {
+                        Name = "Diego Bastos",
+                        UserName = "diego.bastos@al.infnet.edu.br",
+                        Email = "diego.bastos@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = HashPassword
+                    },
+                };
+            alunos.ForEach(user =>
+            {
+                user.Roles.Add(new IdentityUserRole { RoleId = alunoRole.Id, UserId = user.Id });
+                context.Users.Add(user);
+            });
             alunos.ForEach(aluno => context.Alunos.Add(aluno));
+            context.SaveChanges();
         }
 
         private static void SeedTopicosAvaliacao(AvaliacoesDbContext context)
@@ -128,9 +197,7 @@ namespace Avaliacoes.Data
 
         private static void SeedAvaliacoes(AvaliacoesDbContext context)
         {
-            try
-            {
-                var avaliacoes = new List<Avaliacao>{
+            var avaliacoes = new List<Avaliacao>{
                 new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software .Net", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1), CoordenadorId = 1
                     //,Disciplinas = new List<Disciplina>{ 
                     //    new Disciplina { Id = 1}
@@ -154,14 +221,8 @@ namespace Avaliacoes.Data
                 },
             };
 
-                avaliacoes.ForEach(avaliacao => context.Avaliacoes.Add(avaliacao));
-                context.SaveChanges();
-            }
-            catch (System.Exception ex)
-            {
-                throw;
-            }
-
+            avaliacoes.ForEach(avaliacao => context.Avaliacoes.Add(avaliacao));
+            context.SaveChanges();
         }
     }
 }

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Avaliacoes.Data;
 using Avaliacoes.Domain;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class TurmasController : Controller
     {
         private AvaliacoesDbContext db = new AvaliacoesDbContext();

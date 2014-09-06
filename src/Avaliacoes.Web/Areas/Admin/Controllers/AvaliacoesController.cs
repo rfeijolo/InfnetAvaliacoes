@@ -12,6 +12,7 @@ using Avaliacoes.Web.Models.ViewModels;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AvaliacoesController : Controller
     {
         private AvaliacoesDbContext db = new AvaliacoesDbContext();
@@ -86,7 +87,6 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
 
             List<Disciplina> Disciplinas = db.Disciplinas.ToList();
             ViewBag.ListaDisciplinas = new MultiSelectList(Disciplinas, "Id", "Nome", null);
-
             ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
             return View(avaliacaoViewModel);
         }
