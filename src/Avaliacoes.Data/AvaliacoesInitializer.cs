@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using Avaliacoes.Domain;
-using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Avaliacoes.Data
 {
-    public class AvaliacoesInitializer : DropCreateDatabaseAlways<AvaliacoesDbContext>
+    public class AvaliacoesInitializer : DropCreateDatabaseIfModelChanges<AvaliacoesDbContext>
     {
         protected override void Seed(AvaliacoesDbContext context)
         {
@@ -17,14 +19,84 @@ namespace Avaliacoes.Data
             SeedAlunos(context);
             SeedDisciplinas(context);
             SeedAvaliacoes(context);
+
+            SeedApplicationUsers(context);
+
             base.Seed(context);
+        }
+
+        private void SeedApplicationUsers(AvaliacoesDbContext context)
+        {
+            var adminRole = new IdentityRole { Name = "admin", Id = Guid.NewGuid().ToString() };
+            var alunoRole = new IdentityRole { Name = "aluno", Id = Guid.NewGuid().ToString() };
+
+            context.Roles.Add(adminRole);
+            context.Roles.Add(alunoRole);
+            context.SaveChanges();
+
+            var password = new PasswordHasher().HashPassword("mudar123!");
+
+            var users = new List<ApplicationUser>
+                {
+                    new ApplicationUser
+                    {
+                        Name = "Rodrigo Aiala",
+                        UserName = "rodrigo.rodrigues@al.infnet.edu.br",
+                        Email = "rodrigo.rodrigues@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = password
+                    },
+                    new ApplicationUser
+                    {
+                        Name = "Felipe Barbirato",
+                        UserName = "felipe.barbirato@al.infnet.edu.br",
+                        Email = "felipe.barbirato@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = password
+                    },
+                    new ApplicationUser
+                    {
+                        Name = "Gabriel Berguer",
+                        UserName = "gabriel.berguer@al.infnet.edu.br",
+                        Email = "gabriel.berguer@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = password
+                    },
+                    new ApplicationUser
+                    {
+                        Name = "Diego Bastos",
+                        UserName = "diego.bastos@al.infnet.edu.br",
+                        Email = "diego.bastos@al.infnet.edu.br",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        PasswordHash = password
+                    },
+                };
+            users.ForEach(user =>
+            {
+                user.Roles.Add(new IdentityUserRole { RoleId = alunoRole.Id, UserId = user.Id });
+                context.Users.Add(user);
+            });
+
+            var administrador = new ApplicationUser
+            {
+                Name = "Administrador",
+                UserName = "admin@infnet.edu.br",
+                Email = "admin@infnet.edu.br",
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                PasswordHash = password,
+            };
+
+            context.Users.Add(administrador);
+            administrador.Roles.Add(new IdentityUserRole { RoleId = adminRole.Id, UserId = administrador.Id });
+            context.SaveChanges();
         }
 
         private void SeedAlunos(AvaliacoesDbContext context)
         {
             var alunos = new List<Aluno>{
-                new Aluno{ Nome = "Rodrigo Aiala", Email="rodrigo.aiala@al.infnet.edu.br" },
-                new Aluno{ Nome = "Felipe Barbirato", Email="felipe.barbirato@al.infnet.edu.br" },
+                new Aluno{ Nome = "Rodrigo Aiala", Email="rodrigo.rodrigues@al.infnet.edu.br" },
+                new Aluno{ Nome = "", Email="felipe.barbirato@al.infnet.edu.br" },
                 new Aluno{ Nome = "Gabriel Berguer", Email="gabriel.berguer@al.infnet.edu.br" },
                 new Aluno{ Nome = "Diego Bastos", Email="diego.bastos@al.infnet.edu.br" },
             };
