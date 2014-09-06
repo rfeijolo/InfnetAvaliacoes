@@ -8,6 +8,6 @@ namespace Avaliacoes.Web.Models.ViewModels
 {
     public class AvaliacaoViewModel : Avaliacao
     {
-        public ICollection<int> DisciplinasID { get; set; }
+        public ICollection<int> ModulosID { get; set; }
     }
 }

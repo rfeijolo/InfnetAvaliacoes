@@ -45,8 +45,8 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         // GET: /Admin/Avaliacoes/Create
         public ActionResult Create()
         {
-            List<Disciplina> Disciplinas = db.Disciplinas.ToList();
-            ViewBag.ListaDisciplinas = new MultiSelectList(Disciplinas, "Id", "Nome", null);
+            List<Modulo> Modulos = db.Modulos.ToList();
+            ViewBag.ListaModulos = new MultiSelectList(Modulos, "Id", "Nome", null);
 
             ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
             return View();
@@ -65,18 +65,18 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
                 avaliacao.DataFim = avaliacaoViewModel.DataFim;
                 avaliacao.CoordenadorId = avaliacaoViewModel.CoordenadorId;
 
-                foreach (var disciplinaID in avaliacaoViewModel.DisciplinasID)
+                foreach (var moduloID in avaliacaoViewModel.ModulosID)
                 {
-                    var disciplina = db.Disciplinas.Find(disciplinaID);
-                    if (disciplina != null)
+                    var modulo = db.Modulos.Find(moduloID);
+                    if (modulo != null)
                     {
-                        if (avaliacao.Disciplinas == null)
+                        if (avaliacao.Modulos == null)
                         {
-                            avaliacao.Disciplinas = new List<Disciplina> {disciplina};
+                            avaliacao.Modulos = new List<Modulo> {modulo};
                         }
                         else 
                         { 
-                            avaliacao.Disciplinas.Add(disciplina);
+                            avaliacao.Modulos.Add(modulo);
                         }
                     }
                 }
@@ -85,8 +85,8 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            List<Disciplina> Disciplinas = db.Disciplinas.ToList();
-            ViewBag.ListaDisciplinas = new MultiSelectList(Disciplinas, "Id", "Nome", null);
+            List<Modulo> Modulos = db.Modulos.ToList();
+            ViewBag.ListaModulos = new MultiSelectList(Modulos, "Id", "Nome", null);
             ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
             return View(avaliacaoViewModel);
         }

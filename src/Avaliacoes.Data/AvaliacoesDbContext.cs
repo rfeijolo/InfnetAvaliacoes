@@ -29,12 +29,13 @@ namespace Avaliacoes.Data
         public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<Coordenador> Coordenadores { get; set; }
         public DbSet<Curso> Cursos { get; set; }
-        public DbSet<Disciplina> Disciplinas { get; set; }
+        public DbSet<Modulo> Modulos { get; set; }
         public DbSet<Professor> Professores { get; set; }
         public DbSet<Questao> Questoes { get; set; }
         public DbSet<Resposta> Respostas { get; set; }
         public DbSet<TopicoAvaliacao> Topicos { get; set; }
         public DbSet<Turma> Turmas { get; set; }
+        public DbSet<Bloco> Blocos { get; set; }
 
         IQueryable<Aluno> IAvaliacoesDataSource.Alunos
         {
@@ -56,9 +57,9 @@ namespace Avaliacoes.Data
             get { return Cursos; }
         }
 
-        IQueryable<Disciplina> IAvaliacoesDataSource.Disciplinas
+        IQueryable<Modulo> IAvaliacoesDataSource.Modulos
         {
-            get { return Disciplinas; }
+            get { return Modulos; }
         }
 
         IQueryable<Professor> IAvaliacoesDataSource.Professores
@@ -84,6 +85,11 @@ namespace Avaliacoes.Data
         IQueryable<Turma> IAvaliacoesDataSource.Turmas
         {
             get { return Turmas; }
+        }
+
+        IQueryable<Bloco> IAvaliacoesDataSource.Blocos
+        {
+            get { return Blocos; }
         }
 
     }

@@ -13,107 +13,107 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
     //TODO: Mover para curso
     [Authorize(Roles = "admin")]
-    public class DisciplinasController : Controller
+    public class ModulosController : Controller
     {
         private AvaliacoesDbContext db = new AvaliacoesDbContext();
 
-        // GET: Admin/Disciplinas
+        // GET: Admin/Modulos
         public ActionResult Index()
         {
-            return View(db.Disciplinas.ToList());
+            return View(db.Modulos.ToList());
         }
 
-        // GET: Admin/Disciplinas/Details/5
+        // GET: Admin/Modulos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Disciplina disciplina = db.Disciplinas.Find(id);
-            if (disciplina == null)
+            Modulo modulo = db.Modulos.Find(id);
+            if (modulo == null)
             {
                 return HttpNotFound();
             }
-            return View(disciplina);
+            return View(modulo);
         }
 
-        // GET: Admin/Disciplinas/Create
+        // GET: Admin/Modulos/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Disciplinas/Create
+        // POST: Admin/Modulos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome")] Disciplina disciplina)
+        public ActionResult Create([Bind(Include = "Id,Nome")] Modulo modulo)
         {
             if (ModelState.IsValid)
             {
-                db.Disciplinas.Add(disciplina);
+                db.Modulos.Add(modulo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(disciplina);
+            return View(modulo);
         }
 
-        // GET: Admin/Disciplinas/Edit/5
+        // GET: Admin/Modulos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Disciplina disciplina = db.Disciplinas.Find(id);
-            if (disciplina == null)
+            Modulo modulo = db.Modulos.Find(id);
+            if (modulo == null)
             {
                 return HttpNotFound();
             }
-            return View(disciplina);
+            return View(modulo);
         }
 
-        // POST: Admin/Disciplinas/Edit/5
+        // POST: Admin/Modulos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome")] Disciplina disciplina)
+        public ActionResult Edit([Bind(Include = "Id,Nome")] Modulo modulo)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(disciplina).State = EntityState.Modified;
+                db.Entry(modulo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(disciplina);
+            return View(modulo);
         }
 
-        // GET: Admin/Disciplinas/Delete/5
+        // GET: Admin/Modulos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Disciplina disciplina = db.Disciplinas.Find(id);
-            if (disciplina == null)
+            Modulo modulo = db.Modulos.Find(id);
+            if (modulo == null)
             {
                 return HttpNotFound();
             }
-            return View(disciplina);
+            return View(modulo);
         }
 
-        // POST: Admin/Disciplinas/Delete/5
+        // POST: Admin/Modulos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Disciplina disciplina = db.Disciplinas.Find(id);
-            db.Disciplinas.Remove(disciplina);
+            Modulo modulo = db.Modulos.Find(id);
+            db.Modulos.Remove(modulo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

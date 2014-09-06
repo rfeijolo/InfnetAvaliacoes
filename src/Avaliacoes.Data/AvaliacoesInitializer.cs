@@ -18,8 +18,9 @@ namespace Avaliacoes.Data
             SeedCursos(context);
             SeedProfessores(context);
             SeedAlunos(context);
-            SeedDisciplinas(context);
+            SeedModulos(context);
             SeedAvaliacoes(context);
+            SeedBloco(context);
 
             SeedApplicationUsers(context);
 
@@ -179,19 +180,19 @@ namespace Avaliacoes.Data
             context.SaveChanges();
         }
 
-        private static void SeedDisciplinas(AvaliacoesDbContext context)
+        private static void SeedModulos(AvaliacoesDbContext context)
         {
-            var disciplinas = new List<Disciplina>{
-                new Disciplina { Nome = "Introdução à Engenharia de Software"},
-                new Disciplina { Nome = "Métricas de Desenvolvimento de Software"},
-                new Disciplina { Nome = "Processos de Desenvolvimento de Software"},
-                new Disciplina { Nome = "Programação Orientada a Objetos com .NET"},
-                new Disciplina { Nome = "Desenvolvimento de Aplicações com .NET"},
-                new Disciplina { Nome = "Análise e Projeto de Sistemas Orientados a Objeto"},
-                new Disciplina { Nome = "Projeto de Bloco: Desenvolvimento Orientado a Objeto com .NET"},
+            var modulos = new List<Modulo>{
+                new Modulo { Nome = "Introdução à Engenharia de Software"},
+                new Modulo { Nome = "Métricas de Desenvolvimento de Software"},
+                new Modulo { Nome = "Processos de Desenvolvimento de Software"},
+                new Modulo { Nome = "Programação Orientada a Objetos com .NET"},
+                new Modulo { Nome = "Desenvolvimento de Aplicações com .NET"},
+                new Modulo { Nome = "Análise e Projeto de Sistemas Orientados a Objeto"},
+                new Modulo { Nome = "Projeto de Bloco: Desenvolvimento Orientado a Objeto com .NET"},
             };
 
-            disciplinas.ForEach(disciplina => context.Disciplinas.Add(disciplina));
+            modulos.ForEach(modulo => context.Modulos.Add(modulo));
             context.SaveChanges();
         }
 
@@ -199,8 +200,8 @@ namespace Avaliacoes.Data
         {
             var avaliacoes = new List<Avaliacao>{
                 new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software .Net", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1), CoordenadorId = 1
-                    //,Disciplinas = new List<Disciplina>{ 
-                    //    new Disciplina { Id = 1}
+                    //,Modulos = new List<Modulo>{ 
+                    //    new Modulo { Id = 1}
                     //},
                     //Questoes = new List<Questao>{
                     //    new Questao {Id = 1, TopicoAvaliacaoId = 1},
@@ -209,9 +210,9 @@ namespace Avaliacoes.Data
                     //}
                 },
                 new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software Java", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1), CoordenadorId = 1
-                    //,Disciplinas = new List<Disciplina>{ 
-                    //    new Disciplina { Id = 2},
-                    //    new Disciplina { Id = 3}
+                    //,Modulos = new List<Modulo>{ 
+                    //    new Modulo { Id = 2},
+                    //    new Modulo { Id = 3}
                     //},
                     //Questoes = new List<Questao>{
                     //    new Questao {Id = 4, TopicoAvaliacaoId = 1},
@@ -222,6 +223,18 @@ namespace Avaliacoes.Data
             };
 
             avaliacoes.ForEach(avaliacao => context.Avaliacoes.Add(avaliacao));
+            context.SaveChanges();
+        }
+
+        private static void SeedBloco(AvaliacoesDbContext context)
+        {
+            var blocos = new List<Bloco>{
+                new Bloco { Nome = "Engenharia de Software"},
+                new Bloco { Nome = "Desenvolvimento Orientado a Objetos com .NET"},
+                new Bloco { Nome = "Desenvolvimento Web com .NET"},
+            };
+
+            blocos.ForEach(bloco => context.Blocos.Add(bloco));
             context.SaveChanges();
         }
     }

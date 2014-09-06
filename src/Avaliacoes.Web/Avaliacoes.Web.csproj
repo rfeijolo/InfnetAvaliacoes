@@ -195,7 +195,7 @@
     <Compile Include="Areas\Admin\Controllers\CoordenadoresController.cs" />
     <Compile Include="Areas\Admin\Controllers\CursosController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
-    <Compile Include="Areas\Admin\Controllers\DisciplinasController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ModulosController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProfessoresController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestoesController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicosController.cs" />
@@ -272,11 +272,11 @@
     <Content Include="Areas\Admin\Views\Turmas\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Turmas\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Turmas\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Disciplinas\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Disciplinas\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Disciplinas\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Disciplinas\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Disciplinas\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Modulos\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Modulos\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Modulos\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Modulos\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Modulos\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
