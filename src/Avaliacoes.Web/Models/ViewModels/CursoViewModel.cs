@@ -6,9 +6,8 @@ using System.Web;
 
 namespace Avaliacoes.Web.Models.ViewModels
 {
-    public class AvaliacaoViewModel : Avaliacao
+    public class CursoViewModel : Curso
     {
-        public ICollection<int> ModulosID { get; set; }
-        public ICollection<int> QuestoesID { get; set; }
+        public ICollection<int> BlocosId { get; set; }
     }
 }

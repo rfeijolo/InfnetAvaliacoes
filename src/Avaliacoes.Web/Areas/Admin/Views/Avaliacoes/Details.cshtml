@@ -42,6 +42,36 @@
             @Html.DisplayFor(model => model.Coordenador.Nome)
         </dd>
 
+        <dt>
+            Modulos
+        </dt>
+            
+        <dd>
+            <ul>
+                @foreach (var item in Model.Modulos)
+                {
+                    <li>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </li>
+                }
+            </ul>
+        </dd>
+
+        <dt>
+            Questoes
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.Questoes)
+            {
+                <ul>
+                    <li>
+                        @Html.DisplayFor(modelItem => item.Texto)
+                    </li>
+                </ul>
+            }
+        </dd>
+
     </dl>
 </div>
 <p>

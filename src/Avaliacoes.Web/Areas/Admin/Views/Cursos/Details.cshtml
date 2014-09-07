@@ -18,6 +18,22 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
 
+        <dt>
+            Modulos
+        </dt>
+        
+        <dd>
+            <ul>
+                @foreach (var item in Model.Blocos)
+                {
+                    <li>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </li>
+                }
+            </ul>
+
+        </dd>
+
     </dl>
 </div>
 <p>

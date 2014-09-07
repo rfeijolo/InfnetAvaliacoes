@@ -45,8 +45,11 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         // GET: /Admin/Avaliacoes/Create
         public ActionResult Create()
         {
-            List<Disciplina> Disciplinas = db.Disciplinas.ToList();
-            ViewBag.ListaDisciplinas = new MultiSelectList(Disciplinas, "Id", "Nome", null);
+            List<Modulo> modulos = db.Modulos.ToList();
+            ViewBag.ListaModulos = new MultiSelectList(modulos, "Id", "Nome", null);
+
+            List<Questao> questoes = db.Questoes.ToList();
+            ViewBag.ListaQuestoes = new MultiSelectList(questoes, "Id", "Texto", null);
 
             ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
             return View();
@@ -65,28 +68,45 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
                 avaliacao.DataFim = avaliacaoViewModel.DataFim;
                 avaliacao.CoordenadorId = avaliacaoViewModel.CoordenadorId;
 
-                foreach (var disciplinaID in avaliacaoViewModel.DisciplinasID)
+                foreach (var moduloID in avaliacaoViewModel.ModulosID)
                 {
-                    var disciplina = db.Disciplinas.Find(disciplinaID);
-                    if (disciplina != null)
+                    var modulo = db.Modulos.Find(moduloID);
+                    if (modulo != null)
                     {
-                        if (avaliacao.Disciplinas == null)
+                        if (avaliacao.Modulos == null)
                         {
-                            avaliacao.Disciplinas = new List<Disciplina> {disciplina};
+                            avaliacao.Modulos = new List<Modulo> {modulo};
                         }
                         else 
                         { 
-                            avaliacao.Disciplinas.Add(disciplina);
+                            avaliacao.Modulos.Add(modulo);
                         }
                     }
                 }
+
+                foreach (var questaoID in avaliacaoViewModel.QuestoesID)
+                {
+                    var questao = db.Questoes.Find(questaoID);
+                    if (questao != null)
+                    {
+                        if (avaliacao.Questoes == null)
+                        {
+                            avaliacao.Questoes = new List<Questao> { questao };
+                        }
+                        else
+                        {
+                            avaliacao.Questoes.Add(questao);
+                        }
+                    }
+                }
+
                 db.Avaliacoes.Add(avaliacao);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            List<Disciplina> Disciplinas = db.Disciplinas.ToList();
-            ViewBag.ListaDisciplinas = new MultiSelectList(Disciplinas, "Id", "Nome", null);
+            List<Modulo> Modulos = db.Modulos.ToList();
+            ViewBag.ListaModulos = new MultiSelectList(Modulos, "Id", "Nome", null);
             ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
             return View(avaliacaoViewModel);
         }
@@ -100,28 +120,90 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Avaliacao avaliacao = db.Avaliacoes.Find(id);
+
             if (avaliacao == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome", avaliacao.CoordenadorId);
-            return View(avaliacao);
+
+            var avaliacaoViewModel = new AvaliacaoViewModel();
+            avaliacaoViewModel.Objetivo  = avaliacao.Objetivo;
+            avaliacaoViewModel.DataInicio = avaliacao.DataInicio;
+            avaliacaoViewModel.DataFim = avaliacao.DataFim;
+            avaliacaoViewModel.CoordenadorId  = avaliacao.CoordenadorId;
+            avaliacaoViewModel.Modulos = avaliacao.Modulos;
+            avaliacaoViewModel.Questoes = avaliacao.Questoes;
+
+            var modulosID = new List<int>();
+            avaliacaoViewModel.Modulos.ToList().ForEach(m => modulosID.Add(m.Id));
+
+            var questoesID = new List<int>();
+            avaliacaoViewModel.Questoes.ToList().ForEach(q => questoesID.Add(q.Id));
+
+            List<Modulo> modulos = db.Modulos.ToList();
+            ViewBag.ListaModulos = new MultiSelectList(modulos, "Id", "Nome", modulosID);
+
+            List<Questao> questoes = db.Questoes.ToList();
+            ViewBag.ListaQuestoes = new MultiSelectList(questoes, "Id", "Texto", questoesID);
+
+            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome", avaliacaoViewModel.CoordenadorId);
+            return View(avaliacaoViewModel);
         }
 
         //
         // POST: /Admin/Avaliacoes/Edit/5
         [HttpPost]
-        public ActionResult Edit(Avaliacao avaliacao)
+        public ActionResult Edit(AvaliacaoViewModel avaliacaoViewModel)
         {
             if (ModelState.IsValid)
             {
+
+                var avaliacao = new Avaliacao();
+                avaliacao.Id = avaliacaoViewModel.Id;
+                avaliacao.Objetivo = avaliacaoViewModel.Objetivo;
+                avaliacao.DataInicio = avaliacaoViewModel.DataInicio;
+                avaliacao.DataFim = avaliacaoViewModel.DataFim;
+                avaliacao.CoordenadorId = avaliacaoViewModel.CoordenadorId;
+
+                foreach (var moduloID in avaliacaoViewModel.ModulosID)
+                {
+                    var modulo = db.Modulos.Find(moduloID);
+                    if (modulo != null)
+                    {
+                        if (avaliacao.Modulos == null)
+                        {
+                            avaliacao.Modulos = new List<Modulo> { modulo };
+                        }
+                        else
+                        {
+                            avaliacao.Modulos.Add(modulo);
+                        }
+                    }
+                }
+
+                foreach (var questaoID in avaliacaoViewModel.QuestoesID)
+                {
+                    var questao = db.Questoes.Find(questaoID);
+                    if (questao != null)
+                    {
+                        if (avaliacao.Questoes == null)
+                        {
+                            avaliacao.Questoes = new List<Questao> { questao };
+                        }
+                        else
+                        {
+                            avaliacao.Questoes.Add(questao);
+                        }
+                    }
+                }
+
                 db.Entry(avaliacao).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome", avaliacao.CoordenadorId);
-            return View(avaliacao);
+            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome", avaliacaoViewModel.CoordenadorId);
+            return View(avaliacaoViewModel);
         }
 
         //
