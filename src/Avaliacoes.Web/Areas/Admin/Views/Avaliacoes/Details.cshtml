@@ -47,14 +47,14 @@
         </dt>
             
         <dd>
-            @foreach (var item in Model.Modulos)
-            {
             <ul>
-                <li>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </li>
+                @foreach (var item in Model.Modulos)
+                {
+                    <li>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </li>
+                }
             </ul>
-            }
         </dd>
 
         <dt>

@@ -1,4 +1,4 @@
-﻿@model Avaliacoes.Domain.Curso
+﻿@model Avaliacoes.Web.Models.ViewModels.CursoViewModel
 
 @{
     ViewBag.Title = "Editar";
@@ -22,6 +22,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Nome)
                 @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BlocosId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(model => model.BlocosId, ViewBag.ListaBlocos as System.Web.Mvc.MultiSelectList, new { Multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.BlocosId)
             </div>
         </div>
 
