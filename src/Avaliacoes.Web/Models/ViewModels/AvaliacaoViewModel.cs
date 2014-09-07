@@ -9,5 +9,6 @@ namespace Avaliacoes.Web.Models.ViewModels
     public class AvaliacaoViewModel : Avaliacao
     {
         public ICollection<int> ModulosID { get; set; }
+        public ICollection<int> QuestoesID { get; set; }
     }
 }
