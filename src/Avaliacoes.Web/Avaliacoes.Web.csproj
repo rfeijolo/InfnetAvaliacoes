@@ -192,6 +192,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AlunosController.cs" />
     <Compile Include="Areas\Admin\Controllers\AvaliacoesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlocosController.cs" />
     <Compile Include="Areas\Admin\Controllers\CoordenadoresController.cs" />
     <Compile Include="Areas\Admin\Controllers\CursosController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
@@ -293,6 +294,11 @@
     <Content Include="Areas\Admin\Views\Avaliacoes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Avaliacoes\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Avaliacoes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Blocos\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Blocos\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Blocos\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Blocos\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Blocos\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
