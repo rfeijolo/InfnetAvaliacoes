@@ -51,9 +51,10 @@
     <Compile Include="Aluno.cs" />
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Avaliacao.cs" />
+    <Compile Include="Bloco.cs" />
     <Compile Include="Coordenador.cs" />
     <Compile Include="Curso.cs" />
-    <Compile Include="Disciplina.cs" />
+    <Compile Include="Modulo.cs" />
     <Compile Include="Generic\Activity.cs" />
     <Compile Include="Generic\ActivityFactory.cs" />
     <Compile Include="Generic\Command.cs" />

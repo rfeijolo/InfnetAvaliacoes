@@ -4,7 +4,7 @@
     ViewBag.Title = "Novo";
 }
 
-<h2>Create</h2>
+<h2>Novo</h2>
 
 
 @using (Html.BeginForm()) 
@@ -49,16 +49,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DisciplinasID, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ModulosID, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.ListBoxFor(model => model.DisciplinasID, ViewBag.ListaDisciplinas as System.Web.Mvc.MultiSelectList, new { Multiple = "multiple" })
-                @Html.ValidationMessageFor(model => model.DisciplinasID)
+                @Html.ListBoxFor(model => model.ModulosID, ViewBag.ListaModulos as System.Web.Mvc.MultiSelectList, new { Multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.ModulosID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuestoesID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(model => model.QuestoesID, ViewBag.ListaQuestoes as System.Web.Mvc.MultiSelectList, new { Multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.QuestoesID)
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-default" />
             </div>
         </div>
     </div>
