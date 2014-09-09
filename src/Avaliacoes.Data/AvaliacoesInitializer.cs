@@ -229,9 +229,9 @@ namespace Avaliacoes.Data
         private static void SeedBloco(AvaliacoesDbContext context)
         {
             var blocos = new List<Bloco>{
-                new Bloco { Nome = "Engenharia de Software"},
-                new Bloco { Nome = "Desenvolvimento Orientado a Objetos com .NET"},
-                new Bloco { Nome = "Desenvolvimento Web com .NET"},
+                new Bloco { Nome = "Engenharia de Software", CursoId = 1},
+                new Bloco { Nome = "Desenvolvimento Orientado a Objetos com .NET", CursoId = 1},
+                new Bloco { Nome = "Desenvolvimento Web com .NET", CursoId = 1},
             };
 
             blocos.ForEach(bloco => context.Blocos.Add(bloco));

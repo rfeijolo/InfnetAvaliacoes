@@ -2,19 +2,29 @@
 
 @{
     ViewBag.Title = "Novo";
+    //TODO: Criar ViewModel e remover ViewBag
+    var selectList = (IEnumerable<SelectListItem>)ViewBag.Cursos;
 }
 
 <h2>Novo</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Bloco</h4>
         <hr />
         @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CursoId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CursoId, selectList)
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })

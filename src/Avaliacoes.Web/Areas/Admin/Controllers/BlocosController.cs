@@ -42,7 +42,16 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         // GET: /Admin/Blocos/Create
         public ActionResult Create()
         {
+            CreateCursosInViewBag();
             return View();
+        }
+
+        private void CreateCursosInViewBag(int? selectedValue = null)
+        {
+            var cursos = db.Cursos;
+            ViewBag.Cursos = selectedValue.HasValue
+                ? new SelectList(cursos, "Id", "Nome", selectedValue.Value)
+                : new SelectList(cursos, "Id", "Nome");
         }
 
         //
@@ -68,11 +77,12 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bloco bloco = db.Blocos.Find(id);
+            var bloco = db.Blocos.Find(id);
             if (bloco == null)
             {
                 return HttpNotFound();
             }
+            CreateCursosInViewBag(bloco.CursoId);
             return View(bloco);
         }
 
