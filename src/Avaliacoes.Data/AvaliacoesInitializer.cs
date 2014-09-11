@@ -12,7 +12,6 @@ namespace Avaliacoes.Data
     {
         protected override void Seed(AvaliacoesDbContext context)
         {
-            SeedCoordenadores(context);
             SeedTopicosAvaliacao(context);
             SeedQuestoes(context);
             SeedCursos(context);
@@ -144,16 +143,6 @@ namespace Avaliacoes.Data
             context.SaveChanges();
         }
 
-        private static void SeedCoordenadores(AvaliacoesDbContext context)
-        {
-            var coordenadores = new List<Coordenador>
-            {
-                new Coordenador {Email = "aquino@infnet.edu.br", Nome = "Tomás de Aquino Tinoco Botelho"}
-            };
-            coordenadores.ForEach(coord => context.Coordenadores.Add(coord));
-            context.SaveChanges();
-        }
-
         private static void SeedCursos(AvaliacoesDbContext context)
         {
             var cursos = new List<Curso>{
@@ -199,7 +188,7 @@ namespace Avaliacoes.Data
         private static void SeedAvaliacoes(AvaliacoesDbContext context)
         {
             var avaliacoes = new List<Avaliacao>{
-                new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software .Net", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1), CoordenadorId = 1
+                new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software .Net", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1)
                     //,Modulos = new List<Modulo>{ 
                     //    new Modulo { Id = 1}
                     //},
@@ -209,7 +198,7 @@ namespace Avaliacoes.Data
                     //    new Questao {Id = 3, TopicoAvaliacaoId = 1}
                     //}
                 },
-                new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software Java", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1), CoordenadorId = 1
+                new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software Java", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1)
                     //,Modulos = new List<Modulo>{ 
                     //    new Modulo { Id = 2},
                     //    new Modulo { Id = 3}

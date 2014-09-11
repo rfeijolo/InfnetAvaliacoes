@@ -14,10 +14,6 @@ namespace Avaliacoes.Domain
         public virtual ICollection<Questao> Questoes { get; set; }
         public virtual ICollection<Modulo> Modulos { get; set; }
 
-        [ForeignKey("Coordenador"), DisplayName("Coordenador")]
-        public int CoordenadorId { get; set; }
-        public virtual Coordenador Coordenador { get; set; }
-
         public enum Situacao
         {
             Agendada,

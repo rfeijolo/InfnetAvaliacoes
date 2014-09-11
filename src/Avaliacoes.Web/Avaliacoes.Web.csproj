@@ -193,7 +193,6 @@
     <Compile Include="Areas\Admin\Controllers\AlunosController.cs" />
     <Compile Include="Areas\Admin\Controllers\AvaliacoesController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlocosController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CoordenadoresController.cs" />
     <Compile Include="Areas\Admin\Controllers\CursosController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\ModulosController.cs" />
@@ -242,11 +241,6 @@
     </Content>
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Coordenadores\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Coordenadores\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Coordenadores\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Coordenadores\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Coordenadores\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_SidebarPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Topicos\Create.cshtml" />

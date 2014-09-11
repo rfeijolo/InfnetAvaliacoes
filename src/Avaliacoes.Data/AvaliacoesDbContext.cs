@@ -27,7 +27,6 @@ namespace Avaliacoes.Data
 
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<Avaliacao> Avaliacoes { get; set; }
-        public DbSet<Coordenador> Coordenadores { get; set; }
         public DbSet<Curso> Cursos { get; set; }
         public DbSet<Modulo> Modulos { get; set; }
         public DbSet<Professor> Professores { get; set; }
@@ -36,6 +35,7 @@ namespace Avaliacoes.Data
         public DbSet<TopicoAvaliacao> Topicos { get; set; }
         public DbSet<Turma> Turmas { get; set; }
         public DbSet<Bloco> Blocos { get; set; }
+        public DbSet<ModuloTurma> ModuloTurmas { get; set; }
 
         IQueryable<Aluno> IAvaliacoesDataSource.Alunos
         {
@@ -45,11 +45,6 @@ namespace Avaliacoes.Data
         IQueryable<Avaliacao> IAvaliacoesDataSource.Avaliacoes
         {
             get { return Avaliacoes; }
-        }
-
-        IQueryable<Coordenador> IAvaliacoesDataSource.Coordenadores
-        {
-            get { return Coordenadores; }
         }
 
         IQueryable<Curso> IAvaliacoesDataSource.Cursos

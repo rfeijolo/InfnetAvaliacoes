@@ -8,7 +8,6 @@ namespace Avaliacoes.Domain
         public string Nome { get; set; }
         public string Email { get; set; }
 
-        public virtual ICollection<Turma> Turmas { get; set; }
-        
+        public virtual ICollection<ModuloTurma> ModuloTurma { get; set; }
     }
 }
