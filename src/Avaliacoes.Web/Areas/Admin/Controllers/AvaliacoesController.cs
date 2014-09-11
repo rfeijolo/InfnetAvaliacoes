@@ -67,14 +67,14 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
                     var modulo = db.Modulos.Find(moduloID);
                     if (modulo != null)
                     {
-                        if (avaliacao.Modulos == null)
-                        {
-                            avaliacao.Modulos = new List<Modulo> {modulo};
-                        }
-                        else 
-                        { 
-                            avaliacao.Modulos.Add(modulo);
-                        }
+                        //if (avaliacao.Modulos == null)
+                        //{
+                        //avaliacao.Modulos = new List<Modulo> {modulo};
+                        //}
+                        //else 
+                        //{ 
+                        //    avaliacao.Modulos.Add(modulo);
+                        //}
                     }
                 }
 
@@ -123,11 +123,11 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
             avaliacaoViewModel.Objetivo  = avaliacao.Objetivo;
             avaliacaoViewModel.DataInicio = avaliacao.DataInicio;
             avaliacaoViewModel.DataFim = avaliacao.DataFim;
-            avaliacaoViewModel.Modulos = avaliacao.Modulos;
+            //avaliacaoViewModel.Modulos = avaliacao.Modulos;
             avaliacaoViewModel.Questoes = avaliacao.Questoes;
 
             var modulosID = new List<int>();
-            avaliacaoViewModel.Modulos.ToList().ForEach(m => modulosID.Add(m.Id));
+            //avaliacaoViewModel.Modulos.ToList().ForEach(m => modulosID.Add(m.Id));
 
             var questoesID = new List<int>();
             avaliacaoViewModel.Questoes.ToList().ForEach(q => questoesID.Add(q.Id));
@@ -160,14 +160,14 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
                     var modulo = db.Modulos.Find(moduloID);
                     if (modulo != null)
                     {
-                        if (avaliacao.Modulos == null)
-                        {
-                            avaliacao.Modulos = new List<Modulo> { modulo };
-                        }
-                        else
-                        {
-                            avaliacao.Modulos.Add(modulo);
-                        }
+                        //if (avaliacao.Modulos == null)
+                        //{
+                        //    avaliacao.Modulos = new List<Modulo> { modulo };
+                        //}
+                        //else
+                        //{
+                        //    avaliacao.Modulos.Add(modulo);
+                        //}
                     }
                 }
 

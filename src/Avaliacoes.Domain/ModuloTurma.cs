@@ -5,11 +5,15 @@ namespace Avaliacoes.Domain
 {
     public class ModuloTurma
     {
+        [Key]
         public int Id { get; set; }
-
+        //[Key, Column(Order = 0)]
         public int TurmaId { get; set; }
+        //[Key, Column(Order = 1)]
         public int ModuloId { get; set; }
+        //[Key, Column(Order = 2)]
         public int ProfessorId { get; set; }
+        //[Key, Column(Order = 3)]
         public int AvaliacaoId { get; set; }
 
         [ForeignKey("TurmaId")]

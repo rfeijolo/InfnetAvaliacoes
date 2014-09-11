@@ -22,6 +22,7 @@ namespace Avaliacoes.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            //modelBuilder.Entity<ModuloTurma>().HasOptional(mt => mt.Avaliacao).WithRequired(ava => ava.Modulo);
             base.OnModelCreating(modelBuilder);
         }
 
