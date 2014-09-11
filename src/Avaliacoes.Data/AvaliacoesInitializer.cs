@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Linq;
 using System.Security.Policy;
 using Avaliacoes.Domain;
 using Microsoft.AspNet.Identity;
@@ -20,10 +22,33 @@ namespace Avaliacoes.Data
             SeedModulos(context);
             SeedAvaliacoes(context);
             SeedBloco(context);
-
+            SeedTurmas(context);
             SeedApplicationUsers(context);
-
+            SeedModuloTurma(context);
             base.Seed(context);
+        }
+
+        private void SeedModuloTurma(AvaliacoesDbContext context)
+        {
+            var turma = context.Turmas.First();
+            var professor = context.Professores.First();
+            var modulo = context.Modulos.First();
+            var avaliacao = context.Avaliacoes.First();
+            var moduloPorTurma = new ModuloTurma { TurmaId = turma.Id, ModuloId = modulo.Id, ProfessorId = professor.Id, AvaliacaoId = avaliacao.Id };
+            context.ModuloTurmas.Add(moduloPorTurma);
+            context.SaveChanges();
+        }
+
+        private void SeedTurmas(AvaliacoesDbContext context)
+        {
+            var alunos = context.Alunos.ToList();
+            var turmas = new List<Turma>
+            {
+                new Turma{Codigo = "Sábado Quinzenal", Alunos = new Collection<Aluno>(alunos)}
+            };
+            turmas.ForEach(turma => context.Turmas.Add(turma));
+
+            context.SaveChanges();
         }
 
         private void SeedApplicationUsers(AvaliacoesDbContext context)
@@ -187,28 +212,15 @@ namespace Avaliacoes.Data
 
         private static void SeedAvaliacoes(AvaliacoesDbContext context)
         {
+            var questoes = context.Questoes.ToList();
             var avaliacoes = new List<Avaliacao>{
-                new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software .Net", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1)
-                    //,Modulos = new List<Modulo>{ 
-                    //    new Modulo { Id = 1}
-                    //},
-                    //Questoes = new List<Questao>{
-                    //    new Questao {Id = 1, TopicoAvaliacaoId = 1},
-                    //    new Questao {Id = 2, TopicoAvaliacaoId = 1},
-                    //    new Questao {Id = 3, TopicoAvaliacaoId = 1}
-                    //}
-                },
-                new Avaliacao { Objetivo = "Avaliar Pós Engenharia de Software Java", DataInicio = new System.DateTime(2014,1,1), DataFim = new System.DateTime(2015,1,1)
-                    //,Modulos = new List<Modulo>{ 
-                    //    new Modulo { Id = 2},
-                    //    new Modulo { Id = 3}
-                    //},
-                    //Questoes = new List<Questao>{
-                    //    new Questao {Id = 4, TopicoAvaliacaoId = 1},
-                    //    new Questao {Id = 5, TopicoAvaliacaoId = 1},
-                    //    new Questao {Id = 6, TopicoAvaliacaoId = 1}
-                    //}
-                },
+                new Avaliacao
+                {
+                    Objetivo = "Avaliar Pós Engenharia de Software .Net",
+                    DataInicio = new DateTime(2014,1,1),
+                    DataFim = new DateTime(2015,1,1),
+                    Questoes = new Collection<Questao>(questoes),
+                }
             };
 
             avaliacoes.ForEach(avaliacao => context.Avaliacoes.Add(avaliacao));

@@ -12,7 +12,7 @@ namespace Avaliacoes.Domain
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
         public virtual ICollection<Questao> Questoes { get; set; }
-        public virtual ICollection<Modulo> Modulos { get; set; }
+        public virtual ICollection<ModuloTurma> Modulos { get; set; }
 
         public enum Situacao
         {
