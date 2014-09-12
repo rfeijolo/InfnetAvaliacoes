@@ -20,15 +20,15 @@ namespace Avaliacoes.Data
             SeedProfessores(context);
             SeedAlunos(context);
             SeedModulos(context);
-            SeedAvaliacoes(context);
             SeedBloco(context);
             SeedTurmas(context);
             SeedApplicationUsers(context);
-            SeedModuloTurma(context);
+            SeedAvaliacoes(context);
+            //SeedModuloTurma(context);
             base.Seed(context);
         }
 
-        private void SeedModuloTurma(AvaliacoesDbContext context)
+        /*private void SeedModuloTurma(AvaliacoesDbContext context)
         {
             var turma = context.Turmas.First();
             var professor = context.Professores.First();
@@ -37,7 +37,7 @@ namespace Avaliacoes.Data
             var moduloPorTurma = new ModuloTurma { TurmaId = turma.Id, ModuloId = modulo.Id, ProfessorId = professor.Id, AvaliacaoId = avaliacao.Id };
             context.ModuloTurmas.Add(moduloPorTurma);
             context.SaveChanges();
-        }
+        }*/
 
         private void SeedTurmas(AvaliacoesDbContext context)
         {
@@ -220,6 +220,7 @@ namespace Avaliacoes.Data
                     DataInicio = new DateTime(2014,1,1),
                     DataFim = new DateTime(2015,1,1),
                     Questoes = new Collection<Questao>(questoes),
+                    Modulo = new[]{new ModuloTurma{AvaliacaoId = 1, ModuloId = 1, ProfessorId = 1, TurmaId = 1}, }
                 }
             };
 

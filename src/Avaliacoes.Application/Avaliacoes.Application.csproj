@@ -42,9 +42,11 @@
   <ItemGroup>
     <Compile Include="Generic\Activity.cs" />
     <Compile Include="UseCases\ActivityFactory.cs" />
-    <Compile Include="Generic\Command.cs" />
+    <Compile Include="Generic\ICommand.cs" />
+    <Compile Include="UseCases\ConsultarAvaliacoesPorAlunoCommand.cs" />
     <Compile Include="UseCases\CriarQuestaoCommand.cs" />
     <Compile Include="Generic\Message.cs" />
+    <Compile Include="UseCases\IniciarAvaliacaoCommand.cs" />
     <Compile Include="UseCases\MessageFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UseCases\SistemaController.cs" />

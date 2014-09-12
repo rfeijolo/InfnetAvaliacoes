@@ -19,7 +19,12 @@ namespace Avaliacoes.Application.UseCases
 
             return new Message(msg, status);
         }
-        
+
+        public static Message AvaliacaoIndisponivel()
+        {
+            return new Message("A avaliação solicitada se encontra indisponível.", Message.Status.Failure);
+        }
+
         public static Message CadastroEfetuadoSucesso()
         {
             return new Message("Cadastro efetuado com sucesso.", Message.Status.Success);
@@ -29,7 +34,7 @@ namespace Avaliacoes.Application.UseCases
         {
             return new Message("Não foi possível efetuar o cadastro.", Message.Status.Failure);
         }
-        
+
         internal static Message CampoUltrapassaLimiteCaracteres(string campo, int limite)
         {
             return new Message(String.Format("Campo {0} ultrapassa o limite de {1} caracteres .", campo, limite), Message.Status.Failure);

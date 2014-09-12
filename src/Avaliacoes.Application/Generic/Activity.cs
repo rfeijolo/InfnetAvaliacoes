@@ -9,10 +9,10 @@ namespace Avaliacoes.Application.Generic
 {
     public class Activity
     {
-        private Command _command;
+        private ICommand _command;
         public Object Result { get; set; }
 
-        public Activity(Command command)
+        public Activity(ICommand command)
         {
             _command = command;
         }

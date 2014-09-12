@@ -59,6 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Questao.cs" />
     <Compile Include="Resposta.cs" />
+    <Compile Include="Situacao.cs" />
     <Compile Include="TopicoAvaliacao.cs" />
     <Compile Include="Turma.cs" />
   </ItemGroup>

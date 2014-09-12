@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Avaliacoes.Application.UseCases
 {
-    public class CriarQuestaoCommand : Command
+    public class CriarQuestaoCommand : ICommand
     {
         private Questao _questao;
         public CriarQuestaoCommand(Questao questao)

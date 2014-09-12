@@ -1,4 +1,5 @@
 ﻿using Avaliacoes.Application.Generic;
+using Avaliacoes.Data;
 using Avaliacoes.Data.Contracts;
 using Avaliacoes.Domain;
 using System;
@@ -35,5 +36,22 @@ namespace Avaliacoes.Application.UseCases
         {
             return new Activity(new CriarQuestaoCommand(questao));
         }
+
+        public Activity GerarAtividadeConsultarAvaliacoesPorAluno(string alunoId)
+        {
+            return new Activity(new ConsultarAvaliacoesPorAlunoCommand(alunoId));
+        }
+
+        public Activity GerarAtividadeConsultarAvaliacao(int avaliacaoId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Activity GerarAtividadeIniciarAvaliacao(int avaliacaoId)
+        {
+            return new Activity(new IniciarAvaliacaoCommand(avaliacaoId));
+        }
     }
+
+    
 }

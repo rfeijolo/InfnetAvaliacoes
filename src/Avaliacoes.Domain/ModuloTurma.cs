@@ -5,13 +5,12 @@ namespace Avaliacoes.Domain
 {
     public class ModuloTurma
     {
-        [Key]
-        public int Id { get; set; }
-        //[Key, Column(Order = 0)]
+        //public int Id { get; set; }
+        [Key, Column(Order = 0)]
         public int TurmaId { get; set; }
-        //[Key, Column(Order = 1)]
+        [Key, Column(Order = 1)]
         public int ModuloId { get; set; }
-        //[Key, Column(Order = 2)]
+        [Key, Column(Order = 2)]
         public int ProfessorId { get; set; }
         //[Key, Column(Order = 3)]
         public int AvaliacaoId { get; set; }
@@ -21,8 +20,8 @@ namespace Avaliacoes.Domain
         [ForeignKey("ModuloId")]
         public virtual Modulo Modulo { get; set; }
         [ForeignKey("ProfessorId")]
-        public Professor Professor { get; set; }
+        public virtual Professor Professor { get; set; }
         [ForeignKey("AvaliacaoId")]
-        public Avaliacao Avaliacao { get; set; }
+        public virtual Avaliacao Avaliacao { get; set; }
     }
 }
