@@ -192,7 +192,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AlunosController.cs" />
     <Compile Include="Areas\Admin\Controllers\AvaliacoesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CoordenadoresController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlocosController.cs" />
     <Compile Include="Areas\Admin\Controllers\CursosController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\ModulosController.cs" />
@@ -241,11 +241,6 @@
     </Content>
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Coordenadores\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Coordenadores\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Coordenadores\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Coordenadores\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Coordenadores\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_SidebarPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Topicos\Create.cshtml" />
@@ -293,6 +288,11 @@
     <Content Include="Areas\Admin\Views\Avaliacoes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Avaliacoes\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Avaliacoes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Blocos\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Blocos\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Blocos\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Blocos\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Blocos\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -325,7 +325,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Avaliacao\About.cshtml" />
     <Content Include="Views\Avaliacao\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
@@ -336,13 +335,13 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\toastr.min.js.map" />
-    <Content Include="Views\Avaliacao\Contact.cshtml" />
     <Content Include="Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Avaliacao\Responder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -356,6 +355,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Avaliacoes.Application\Avaliacoes.Application.csproj">
+      <Project>{abbe1260-e914-4c83-8acb-4312c9f6f757}</Project>
+      <Name>Avaliacoes.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Avaliacoes.Data.Contracts\Avaliacoes.Data.Contracts.csproj">
       <Project>{02382a58-099c-4b2e-9167-753dbebb0831}</Project>
       <Name>Avaliacoes.Data.Contracts</Name>

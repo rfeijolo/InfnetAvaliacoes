@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Avaliacoes.Data;
 using Avaliacoes.Domain;
@@ -21,7 +18,7 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         // GET: /Admin/Avaliacoes/
         public ActionResult Index()
         {
-            var avaliacoes = db.Avaliacoes.Include(a => a.Coordenador);
+            var avaliacoes = db.Avaliacoes;
             return View(avaliacoes.ToList());
         }
 
@@ -50,8 +47,6 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
 
             List<Questao> questoes = db.Questoes.ToList();
             ViewBag.ListaQuestoes = new MultiSelectList(questoes, "Id", "Texto", null);
-
-            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
             return View();
         }
 
@@ -66,21 +61,20 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
                 avaliacao.Objetivo = avaliacaoViewModel.Objetivo;
                 avaliacao.DataInicio = avaliacaoViewModel.DataInicio;
                 avaliacao.DataFim = avaliacaoViewModel.DataFim;
-                avaliacao.CoordenadorId = avaliacaoViewModel.CoordenadorId;
 
                 foreach (var moduloID in avaliacaoViewModel.ModulosID)
                 {
                     var modulo = db.Modulos.Find(moduloID);
                     if (modulo != null)
                     {
-                        if (avaliacao.Modulos == null)
-                        {
-                            avaliacao.Modulos = new List<Modulo> {modulo};
-                        }
-                        else 
-                        { 
-                            avaliacao.Modulos.Add(modulo);
-                        }
+                        //if (avaliacao.Modulos == null)
+                        //{
+                        //avaliacao.Modulos = new List<Modulo> {modulo};
+                        //}
+                        //else 
+                        //{ 
+                        //    avaliacao.Modulos.Add(modulo);
+                        //}
                     }
                 }
 
@@ -107,7 +101,6 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
 
             List<Modulo> Modulos = db.Modulos.ToList();
             ViewBag.ListaModulos = new MultiSelectList(Modulos, "Id", "Nome", null);
-            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome");
             return View(avaliacaoViewModel);
         }
 
@@ -130,12 +123,11 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
             avaliacaoViewModel.Objetivo  = avaliacao.Objetivo;
             avaliacaoViewModel.DataInicio = avaliacao.DataInicio;
             avaliacaoViewModel.DataFim = avaliacao.DataFim;
-            avaliacaoViewModel.CoordenadorId  = avaliacao.CoordenadorId;
-            avaliacaoViewModel.Modulos = avaliacao.Modulos;
+            //avaliacaoViewModel.Modulos = avaliacao.Modulos;
             avaliacaoViewModel.Questoes = avaliacao.Questoes;
 
             var modulosID = new List<int>();
-            avaliacaoViewModel.Modulos.ToList().ForEach(m => modulosID.Add(m.Id));
+            //avaliacaoViewModel.Modulos.ToList().ForEach(m => modulosID.Add(m.Id));
 
             var questoesID = new List<int>();
             avaliacaoViewModel.Questoes.ToList().ForEach(q => questoesID.Add(q.Id));
@@ -146,7 +138,6 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
             List<Questao> questoes = db.Questoes.ToList();
             ViewBag.ListaQuestoes = new MultiSelectList(questoes, "Id", "Texto", questoesID);
 
-            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome", avaliacaoViewModel.CoordenadorId);
             return View(avaliacaoViewModel);
         }
 
@@ -163,21 +154,20 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
                 avaliacao.Objetivo = avaliacaoViewModel.Objetivo;
                 avaliacao.DataInicio = avaliacaoViewModel.DataInicio;
                 avaliacao.DataFim = avaliacaoViewModel.DataFim;
-                avaliacao.CoordenadorId = avaliacaoViewModel.CoordenadorId;
 
                 foreach (var moduloID in avaliacaoViewModel.ModulosID)
                 {
                     var modulo = db.Modulos.Find(moduloID);
                     if (modulo != null)
                     {
-                        if (avaliacao.Modulos == null)
-                        {
-                            avaliacao.Modulos = new List<Modulo> { modulo };
-                        }
-                        else
-                        {
-                            avaliacao.Modulos.Add(modulo);
-                        }
+                        //if (avaliacao.Modulos == null)
+                        //{
+                        //    avaliacao.Modulos = new List<Modulo> { modulo };
+                        //}
+                        //else
+                        //{
+                        //    avaliacao.Modulos.Add(modulo);
+                        //}
                     }
                 }
 
@@ -202,7 +192,6 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CoordenadorId = new SelectList(db.Coordenadores, "Id", "Nome", avaliacaoViewModel.CoordenadorId);
             return View(avaliacaoViewModel);
         }
 

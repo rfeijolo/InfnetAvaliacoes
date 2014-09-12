@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Avaliacoes.Data;
 using Avaliacoes.Domain;
+using Avaliacoes.Application.UseCases;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
@@ -54,8 +55,13 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Questoes.Add(questao);
-                db.SaveChanges();
+
+                SistemaController appController = new SistemaController();
+
+                var message = appController.CriarQuestao(questao);
+
+                ViewBag.Feedback = message;
+
                 return RedirectToAction("Index");
             }
 

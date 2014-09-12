@@ -8,6 +8,5 @@ namespace Avaliacoes.Domain
         [Range(1, 5)]
         public int OpcaoEscolhida { get; set; }
         public virtual Aluno Aluno { get; set; }
-        public virtual Avaliacao Avaliacao { get; set; }
     }
 }
