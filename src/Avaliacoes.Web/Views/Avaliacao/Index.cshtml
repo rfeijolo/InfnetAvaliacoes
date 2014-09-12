@@ -1,31 +1,69 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using Avaliacoes.Domain
+@model IEnumerable<Avaliacoes.Domain.ModuloTurma>
+@{
+    ViewBag.Title = "Módulo de Avaliações Infnet";
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+<h2>Avaliações</h2>
+@if (Model.Any())
+{
+    <table class="table">
+        <tr>
+            <th>
+                Módulo
+            </th>
+            <th>
+                Professor
+            </th>
+            <th>
+                Objetivo
+            </th>
+            <th>
+                Hora de Início
+            </th>
+            <th>
+                Hora de Fechamento
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var avaliacaoPorModulo in Model)
+        {
+            <tr>
+                <td>
+                    @avaliacaoPorModulo.Modulo.Nome
+                </td>
+                <td>
+                    @avaliacaoPorModulo.Professor.Nome
+                </td>
+                <td>
+                    @avaliacaoPorModulo.Avaliacao.Objetivo
+                </td>
+                <td>
+                    @avaliacaoPorModulo.Avaliacao.DataInicio
+                </td>
+                <td>
+                    @avaliacaoPorModulo.Avaliacao.DataFim
+                </td>
+                <td>
+                    @avaliacaoPorModulo.Avaliacao.Situacao
+                </td>
+                <td>
+                    @if (avaliacaoPorModulo.Avaliacao.Situacao == Situacao.Disponivel)
+                    {
+                        @Html.ActionLink("Responder", "Responder", new { avaliacaoId = avaliacaoPorModulo.AvaliacaoId })
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <blockquote class="text-primary">
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Não existem avaliações associadas ao seu usuário.
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    </blockquote>
+}

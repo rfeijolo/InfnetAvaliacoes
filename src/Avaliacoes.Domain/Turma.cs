@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 namespace Avaliacoes.Domain
 {
     public class Turma
@@ -6,5 +7,6 @@ namespace Avaliacoes.Domain
         public int Id { get; set; }
         public string Codigo { get; set; }
         public virtual ICollection<Aluno> Alunos { get; set; }
+        public virtual ICollection<ModuloTurma> Modulos { get; set; }
     }
 }

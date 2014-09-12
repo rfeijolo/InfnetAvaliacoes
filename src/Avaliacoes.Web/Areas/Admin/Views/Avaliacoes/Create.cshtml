@@ -41,14 +41,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CoordenadorId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CoordenadorId", String.Empty)
-                @Html.ValidationMessageFor(model => model.CoordenadorId)
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.ModulosID, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.ListBoxFor(model => model.ModulosID, ViewBag.ListaModulos as System.Web.Mvc.MultiSelectList, new { Multiple = "multiple" })

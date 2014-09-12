@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Avaliacoes.Domain
@@ -11,18 +10,28 @@ namespace Avaliacoes.Domain
         public string Objetivo { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
-        public virtual ICollection<Questao> Questoes { get; set; }
-        public virtual ICollection<Modulo> Modulos { get; set; }
 
-        [ForeignKey("Coordenador"), DisplayName("Coordenador")]
-        public int CoordenadorId { get; set; }
-        public virtual Coordenador Coordenador { get; set; }
-
-        public enum Situacao
+        public Situacao Situacao
         {
-            Agendada,
-            EmAndamento,
-            Finalizada
+            get
+            {
+                if (DateTime.Now < DataInicio)
+                {
+                    return Situacao.Agendada;
+                }
+                if (DateTime.Now >= DataInicio && DateTime.Now <= DataFim)
+                {
+                    return Situacao.Disponivel;
+                }
+                return Situacao.Finalizada;
+            }
+        }
+        public virtual ICollection<Questao> Questoes { get; set; }
+        public virtual ICollection<ModuloTurma> Modulo { get; set; }
+
+        public static bool EstaValida(Avaliacao avaliacao)
+        {
+            return avaliacao != null && avaliacao.Situacao == Situacao.Disponivel;
         }
     }
 }

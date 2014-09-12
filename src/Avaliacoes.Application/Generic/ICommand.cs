@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Avaliacoes.Domain.Generic
+namespace Avaliacoes.Application.Generic
 {
-    public interface Command
+    public interface ICommand
     {
         Message Validate();
 

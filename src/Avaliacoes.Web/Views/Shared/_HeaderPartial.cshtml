@@ -14,10 +14,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Avaliações", "Index", new { Controller = "Avaliacao", Area = "" })</li>
-                    @*@if (User.IsInRole("Admin"))
-                        {*@
-                    <li>@Html.ActionLink("Administrativo", "Index", new { Area = "Admin", Controller = "Dashboard" })</li>
-                    @*  }*@
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Administrativo", "Index", new { Area = "Admin", Controller = "Dashboard" })</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

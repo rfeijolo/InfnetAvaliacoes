@@ -7,7 +7,6 @@ namespace Avaliacoes.Data.Contracts
     {
         IQueryable<Aluno> Alunos { get; }
         IQueryable<Avaliacao> Avaliacoes { get; }
-        IQueryable<Coordenador> Coordenadores { get; }
         IQueryable<Curso> Cursos { get; }
         IQueryable<Modulo> Modulos { get; }
         IQueryable<Professor> Professores { get; }

@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using Avaliacoes.Application.UseCases;
+using Microsoft.AspNet.Identity;
 
 namespace Avaliacoes.Web.Controllers
 {
@@ -7,21 +9,16 @@ namespace Avaliacoes.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var avaliacoes = new SistemaController().ConsultarAvaliacoesDisponiveisPorAluno(User.Identity.GetUserId());
+            return View(avaliacoes);
         }
-
-        public ActionResult About()
+        
+        public ActionResult Responder(int avaliacaoId)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            var avaliacao = new SistemaController().ConsultarAvaliacao(avaliacaoId);
+            return View(avaliacao);
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
     }
 }

@@ -38,9 +38,6 @@
             @Html.DisplayFor(modelItem => item.DataFim)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Coordenador.Nome)
-        </td>
-        <td>
             @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
             @Html.ActionLink("Excluir", "Delete", new { id = item.Id })

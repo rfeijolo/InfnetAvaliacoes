@@ -1,0 +1,15 @@
+﻿@model Avaliacoes.Domain.Avaliacao
+
+@{
+    ViewBag.Title = "Resposta de avaliação";
+}
+
+@foreach (var questoesPorTopico in Model.Questoes.GroupBy(questao => questao.TopicoAvaliacao))
+{
+    <h3>@questoesPorTopico.Key.Descricao</h3>
+
+    foreach (var questao in questoesPorTopico)
+    {
+        <h4>@questao.Texto</h4>
+    }
+}
