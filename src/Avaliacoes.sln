@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D8B44EFA-6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avaliacoes.Data", "Avaliacoes.Data\Avaliacoes.Data.csproj", "{8A601FF9-4C94-4301-B6A4-3E94627A2038}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avaliacoes.Application", "Avaliacoes.Application\Avaliacoes.Application.csproj", "{ABBE1260-E914-4C83-8ACB-4312C9F6F757}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{8A601FF9-4C94-4301-B6A4-3E94627A2038}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A601FF9-4C94-4301-B6A4-3E94627A2038}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A601FF9-4C94-4301-B6A4-3E94627A2038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABBE1260-E914-4C83-8ACB-4312C9F6F757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABBE1260-E914-4C83-8ACB-4312C9F6F757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABBE1260-E914-4C83-8ACB-4312C9F6F757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABBE1260-E914-4C83-8ACB-4312C9F6F757}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

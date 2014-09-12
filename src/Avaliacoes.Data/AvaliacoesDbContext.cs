@@ -22,7 +22,6 @@ namespace Avaliacoes.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            //modelBuilder.Entity<ModuloTurma>().HasOptional(mt => mt.Avaliacao).WithRequired(ava => ava.Modulo);
             base.OnModelCreating(modelBuilder);
         }
 
@@ -37,6 +36,7 @@ namespace Avaliacoes.Data
         public DbSet<Turma> Turmas { get; set; }
         public DbSet<Bloco> Blocos { get; set; }
         public DbSet<ModuloTurma> ModuloTurmas { get; set; }
+
 
         IQueryable<Aluno> IAvaliacoesDataSource.Alunos
         {

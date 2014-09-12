@@ -356,6 +356,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Avaliacoes.Application\Avaliacoes.Application.csproj">
+      <Project>{abbe1260-e914-4c83-8acb-4312c9f6f757}</Project>
+      <Name>Avaliacoes.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Avaliacoes.Data.Contracts\Avaliacoes.Data.Contracts.csproj">
       <Project>{02382a58-099c-4b2e-9167-753dbebb0831}</Project>
       <Name>Avaliacoes.Data.Contracts</Name>
