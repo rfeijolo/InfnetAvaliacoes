@@ -48,6 +48,11 @@ namespace Avaliacoes.Application.UseCases
             return iniciarAvaliacao.Result as Avaliacao;
         }
 
-        
+
+        public Message GravarRespostas(IEnumerable<Resposta> respostas)
+        {
+            var gravarRespostas = ActivityFactory.Instance.GerarAtividadeGravarRespostas(respostas);
+            return gravarRespostas.Initiate();
+        }
     }
 }

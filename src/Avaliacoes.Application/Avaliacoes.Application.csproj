@@ -46,6 +46,7 @@
     <Compile Include="UseCases\ConsultarAvaliacoesPorAlunoCommand.cs" />
     <Compile Include="UseCases\CriarQuestaoCommand.cs" />
     <Compile Include="Generic\Message.cs" />
+    <Compile Include="UseCases\GravarRespostaCommand.cs" />
     <Compile Include="UseCases\IniciarAvaliacaoCommand.cs" />
     <Compile Include="UseCases\MessageFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

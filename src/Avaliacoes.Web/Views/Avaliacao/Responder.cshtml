@@ -1,16 +1,35 @@
-﻿@model Avaliacoes.Domain.Avaliacao
+﻿@using Avaliacoes.Domain
+@model Avaliacoes.Domain.Avaliacao
 
 @{
     ViewBag.Title = "Resposta de avaliação";
 }
 
-@foreach (var questoesPorTopico in Model.Questoes.GroupBy(questao => questao.TopicoAvaliacao))
+@using (Html.BeginForm("EnviarResposta", "Avaliacao"))
 {
-    <h3>@questoesPorTopico.Key.Descricao</h3>
-
-    foreach (var questao in questoesPorTopico)
+    var questaoIndex = 0;
+    foreach (var questoesPorTopico in Model.Questoes.GroupBy(questao => questao.TopicoAvaliacao))
     {
-        <h4>@questao.Texto</h4>
-        
+        <input type="hidden" name="[@questaoIndex].AvaliacaoId" value="@Model.Id" />
+        <h3>@questoesPorTopico.Key.Descricao</h3>
+        foreach (var questao in questoesPorTopico)
+        {
+            <h4 class="text-justify">@(questaoIndex + 1) - @questao.Texto</h4>
+            <div style="padding-left:10px">
+                <input type="hidden" name="[@questaoIndex].QuestaoId" value="@questao.Id" />
+                @for (var i = 0; i < 5; i++)
+                {
+                    <label class="radio-inline">
+                        <input type="radio" name="[@questaoIndex].RespostaId" value="@i">@Enum.GetName(typeof(Likert), i)
+                    </label>
+                }
+            </div>
+                questaoIndex = questaoIndex + 1;
+        }
     }
+    <div class="form-group pull-right">
+
+        <input type="submit" id="send" value="Enviar" class="btn btn-success" />
+
+    </div>
 }

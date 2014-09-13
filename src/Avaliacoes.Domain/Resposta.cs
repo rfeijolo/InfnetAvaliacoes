@@ -7,8 +7,7 @@ namespace Avaliacoes.Domain
     {
         public int Id { get; set; }
         public int QuestaoId { get; set; }
-        
-        [Range(1, 5)]
+
         public Likert OpcaoEscolhida { get; set; }
 
         public string AlunoId { get; set; }
@@ -16,5 +15,8 @@ namespace Avaliacoes.Domain
         public virtual Aluno Aluno { get; set; }
         [ForeignKey("QuestaoId")]
         public Questao Questao { get; set; }
+
+        public int AvaliacaoId { get; set; }
+        public Avaliacao Avaliacao { get; set; }
     }
 }
