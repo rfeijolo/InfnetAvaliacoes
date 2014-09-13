@@ -6,6 +6,7 @@ using Avaliacoes.Data;
 using Avaliacoes.Domain;
 using System.Net;
 using Avaliacoes.Web.Models.ViewModels;
+using Avaliacoes.Application.UseCases;
 
 namespace Avaliacoes.Web.Areas.Admin.Controllers
 {
@@ -57,45 +58,17 @@ namespace Avaliacoes.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                SistemaController appController = new SistemaController();
+
                 var avaliacao = new Avaliacao();
                 avaliacao.Objetivo = avaliacaoViewModel.Objetivo;
                 avaliacao.DataInicio = avaliacaoViewModel.DataInicio;
                 avaliacao.DataFim = avaliacaoViewModel.DataFim;
 
-                foreach (var moduloID in avaliacaoViewModel.ModulosID)
-                {
-                    var modulo = db.Modulos.Find(moduloID);
-                    if (modulo != null)
-                    {
-                        //if (avaliacao.Modulos == null)
-                        //{
-                        //avaliacao.Modulos = new List<Modulo> {modulo};
-                        //}
-                        //else 
-                        //{ 
-                        //    avaliacao.Modulos.Add(modulo);
-                        //}
-                    }
-                }
+                var message = appController.CriarAvaliacao(avaliacao, avaliacaoViewModel.ModulosID, avaliacaoViewModel.QuestoesID);
 
-                foreach (var questaoID in avaliacaoViewModel.QuestoesID)
-                {
-                    var questao = db.Questoes.Find(questaoID);
-                    if (questao != null)
-                    {
-                        if (avaliacao.Questoes == null)
-                        {
-                            avaliacao.Questoes = new List<Questao> { questao };
-                        }
-                        else
-                        {
-                            avaliacao.Questoes.Add(questao);
-                        }
-                    }
-                }
+                ViewBag.Feedback = message;
 
-                db.Avaliacoes.Add(avaliacao);
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

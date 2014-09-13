@@ -51,6 +51,11 @@ namespace Avaliacoes.Application.UseCases
         {
             return new Activity(new IniciarAvaliacaoCommand(avaliacaoId));
         }
+
+        internal Activity GerarAtividadeCriarAvaliacao(Avaliacao avaliacao, ICollection<int> modulosIds, ICollection<int> questoesIds)
+        {
+            return new Activity(new CriarAvaliacaoCommand(avaliacao, modulosIds, questoesIds));
+        }
     }
 
     

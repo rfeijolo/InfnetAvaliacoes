@@ -48,6 +48,11 @@ namespace Avaliacoes.Application.UseCases
             return iniciarAvaliacao.Result as Avaliacao;
         }
 
-        
+        public Message CriarAvaliacao(Avaliacao avaliacao, ICollection<int> modulosIds, ICollection<int> questoesIds)
+        {
+            var criarAvaliacao = ActivityFactory.Instance.GerarAtividadeCriarAvaliacao(avaliacao, modulosIds, questoesIds);
+            Message msg = criarAvaliacao.Initiate();
+            return msg;
+        }
     }
 }

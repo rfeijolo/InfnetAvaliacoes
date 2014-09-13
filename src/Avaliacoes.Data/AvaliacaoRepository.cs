@@ -29,6 +29,15 @@ namespace Avaliacoes.Data
 
         #endregion
 
+        public void AdicionarAvaliacao(Avaliacao avaliacao)
+        {
+            using (var db = new AvaliacoesDbContext())
+            {
+                db.Avaliacoes.Add(avaliacao);
+                db.SaveChanges();
+            }
+        }
+
         public IEnumerable<ModuloTurma> ConsultarAvaliacoesDisponiveis(string alunoId)
         {
             using (var db = new AvaliacoesDbContext())
