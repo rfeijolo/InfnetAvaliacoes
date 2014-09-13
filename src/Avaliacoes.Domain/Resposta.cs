@@ -17,7 +17,9 @@ namespace Avaliacoes.Domain
         public virtual Questao Questao { get; set; }
         
         public int AvaliacaoId { get; set; }
+
         [ForeignKey("AvaliacaoId")]
         public virtual Avaliacao Avaliacao { get; set; }
+
     }
 }
