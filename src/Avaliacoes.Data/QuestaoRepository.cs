@@ -28,12 +28,21 @@ namespace Avaliacoes.Data
 
         #endregion
 
-        private AvaliacoesDbContext db = new AvaliacoesDbContext();
-
         public void AdicionarQuestao(Questao questao)
         {
-            db.Questoes.Add(questao);
-            db.SaveChanges();
+            using (var db = new AvaliacoesDbContext())
+            {
+                db.Questoes.Add(questao);
+                db.SaveChanges();
+            }
+        }
+
+        public Questao ConsultarQuestao(int questaoId)
+        {
+            using (var db = new AvaliacoesDbContext())
+            {
+                return db.Questoes.Find(questaoId);
+            }
         }
 
     }

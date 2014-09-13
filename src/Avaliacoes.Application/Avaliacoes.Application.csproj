@@ -44,6 +44,7 @@
     <Compile Include="UseCases\ActivityFactory.cs" />
     <Compile Include="Generic\ICommand.cs" />
     <Compile Include="UseCases\ConsultarAvaliacoesPorAlunoCommand.cs" />
+    <Compile Include="UseCases\CriarAvaliacaoCommand.cs" />
     <Compile Include="UseCases\CriarQuestaoCommand.cs" />
     <Compile Include="Generic\Message.cs" />
     <Compile Include="UseCases\IniciarAvaliacaoCommand.cs" />
