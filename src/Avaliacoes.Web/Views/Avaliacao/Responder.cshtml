@@ -20,7 +20,7 @@
                 @for (var i = 0; i < 5; i++)
                 {
                     <label class="radio-inline">
-                        <input type="radio" name="[@questaoIndex].RespostaId" value="@i">@Enum.GetName(typeof(Likert), i)
+                        <input type="radio" name="[@questaoIndex].RespostaId" value="@i">@Avaliacoes.Web.Infrastructure.LikertNameConverter.Convert(i)
                     </label>
                 }
             </div>
