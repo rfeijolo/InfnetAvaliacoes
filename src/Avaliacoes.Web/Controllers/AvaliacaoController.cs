@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Avaliacoes.Application.Generic;
 using Avaliacoes.Application.UseCases;
 using Avaliacoes.Domain;
 using Avaliacoes.Web.Models;
-using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 
 namespace Avaliacoes.Web.Controllers
@@ -50,9 +48,9 @@ namespace Avaliacoes.Web.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("Error");
+            TempData.Add("ErrorMessage", msg.CurrentMessage);
+            return RedirectToAction("Index");
+            //implementar mensageria
         }
-
-
     }
 }
