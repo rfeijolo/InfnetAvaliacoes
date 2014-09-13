@@ -14,9 +14,10 @@ namespace Avaliacoes.Domain
         [ForeignKey("AlunoId")]
         public virtual Aluno Aluno { get; set; }
         [ForeignKey("QuestaoId")]
-        public Questao Questao { get; set; }
-
+        public virtual Questao Questao { get; set; }
+        
         public int AvaliacaoId { get; set; }
-        public Avaliacao Avaliacao { get; set; }
+        [ForeignKey("AvaliacaoId")]
+        public virtual Avaliacao Avaliacao { get; set; }
     }
 }

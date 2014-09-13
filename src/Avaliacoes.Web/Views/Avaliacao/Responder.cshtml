@@ -10,10 +10,10 @@
     var questaoIndex = 0;
     foreach (var questoesPorTopico in Model.Questoes.GroupBy(questao => questao.TopicoAvaliacao))
     {
-        <input type="hidden" name="[@questaoIndex].AvaliacaoId" value="@Model.Id" />
         <h3>@questoesPorTopico.Key.Descricao</h3>
         foreach (var questao in questoesPorTopico)
         {
+            <input type="hidden" name="[@questaoIndex].AvaliacaoId" value="@Model.Id" />
             <h4 class="text-justify">@(questaoIndex + 1) - @questao.Texto</h4>
             <div style="padding-left:10px">
                 <input type="hidden" name="[@questaoIndex].QuestaoId" value="@questao.Id" />
