@@ -53,6 +53,7 @@
     <Compile Include="Avaliacao.cs" />
     <Compile Include="Bloco.cs" />
     <Compile Include="Curso.cs" />
+    <Compile Include="Likert.cs" />
     <Compile Include="Modulo.cs" />
     <Compile Include="ModuloTurma.cs" />
     <Compile Include="Professor.cs" />

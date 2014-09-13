@@ -56,6 +56,10 @@ namespace Avaliacoes.Application.UseCases
         {
             return new Activity(new CriarAvaliacaoCommand(avaliacao, modulosIds, questoesIds));
         }
+        public Activity GerarAtividadeGravarRespostas(IEnumerable<Resposta> respostas)
+        {
+            return new Activity(new GravarRespostaCommand(respostas));
+        }
     }
 
     
