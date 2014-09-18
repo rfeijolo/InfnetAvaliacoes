@@ -53,6 +53,12 @@ namespace Avaliacoes.Application.UseCases
             var criarAvaliacao = ActivityFactory.Instance.GerarAtividadeCriarAvaliacao(avaliacao, modulosIds, questoesIds);
             Message msg = criarAvaliacao.Initiate();
             return msg;
+		}
+
+        public Message GravarRespostas(IEnumerable<Resposta> respostas)
+        {
+            var gravarRespostas = ActivityFactory.Instance.GerarAtividadeGravarRespostas(respostas);
+            return gravarRespostas.Initiate();
         }
     }
 }

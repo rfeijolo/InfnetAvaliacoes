@@ -1,0 +1,13 @@
+﻿@model Avaliacoes.Domain.Resposta
+
+<div class="form-horizontal">
+    <h4>Resposta</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.EditorFor(resposta => resposta.OpcaoEscolhida)
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>

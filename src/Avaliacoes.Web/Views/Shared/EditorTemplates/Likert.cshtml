@@ -1,0 +1,6 @@
+﻿@using Avaliacoes.Domain
+@foreach (var value in Enum.GetValues(typeof(Likert)))
+{
+    @Html.RadioButtonFor(m => m, value)
+    @Html.Label(value.ToString())
+}
