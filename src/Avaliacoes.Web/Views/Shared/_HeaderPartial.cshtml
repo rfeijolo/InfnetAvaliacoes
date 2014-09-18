@@ -16,7 +16,7 @@
                     <li>@Html.ActionLink("Avaliações", "Index", new { Controller = "Avaliacao", Area = "" })</li>
                     @if (User.IsInRole("admin"))
                     {
-                        <li>@Html.ActionLink("Administrativo", "Index", new { Area = "Admin", Controller = "Dashboard" })</li>
+                        <li>@Html.ActionLink("Administrativo", "Index", new { Area = "Admin", Controller = "Alunos" })</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

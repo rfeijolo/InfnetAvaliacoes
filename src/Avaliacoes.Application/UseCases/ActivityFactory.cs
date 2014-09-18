@@ -62,6 +62,4 @@ namespace Avaliacoes.Application.UseCases
             return new Activity(new GravarRespostaCommand(respostas));
         }
     }
-
-    
 }

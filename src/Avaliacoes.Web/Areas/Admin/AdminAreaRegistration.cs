@@ -17,7 +17,7 @@ namespace Avaliacoes.Web.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", controller = "Dashboard", id = UrlParameter.Optional }
+                new { action = "Index", controller = "Alunos", id = UrlParameter.Optional }
             );
         }
     }

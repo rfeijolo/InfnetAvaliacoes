@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Avaliacoes.Domain.Resposta>
+
+<h2>Respostas</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Aluno.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avaliacao.Objetivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Questao.Texto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpcaoEscolhida)
+            </th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aluno.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Avaliacao.Objetivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Questao.Texto)
+            </td>
+            <td>
+                @Avaliacoes.Web.Infrastructure.LikertNameConverter.Convert((int)item.OpcaoEscolhida)
+            </td>
+        </tr>
+    }
+    
+    </table>
